@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>越南洗衣競品地圖</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+/* Layout: 總表看全貌 → 品牌陣營 → 加盟方案逐項比較（橫向對照表）→ 其他店家卡片 → 來源。 */
+:root{
+  --bg:#f3f6f7; --surface:#ffffff; --ink:#13262e; --muted:#5a6d75; --line:#d9e2e5;
+  --accent:#0b6e8a; --accent-soft:#e1f0f4;
+  --tob:#7a3fb0; --tob-soft:#f0e7f8;
+  --toc:#c2621a; --toc-soft:#fbeadc;
+  --guess:#8a7a12; --guess-soft:#f6f1cf;
+  --hot:#c0392b;
+  --font-body:"Noto Sans TC",system-ui,-apple-system,"Microsoft JhengHei",sans-serif;
+  --font-display:"Space Grotesk","Noto Sans TC",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e171b; --surface:#16232a; --ink:#e4eef1; --muted:#93a8b0; --line:#28393f;
+  --accent:#5cc0dc; --accent-soft:#16343e;
+  --tob:#c39af0; --tob-soft:#2c2140;
+  --toc:#f0a467; --toc-soft:#3a2617;
+  --guess:#e2cf5a; --guess-soft:#33301a; --hot:#ff8a7a; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0e171b; --surface:#16232a; --ink:#e4eef1; --muted:#93a8b0; --line:#28393f;
+  --accent:#5cc0dc; --accent-soft:#16343e;
+  --tob:#c39af0; --tob-soft:#2c2140;
+  --toc:#f0a467; --toc-soft:#3a2617;
+  --guess:#e2cf5a; --guess-soft:#33301a; --hot:#ff8a7a; color-scheme:dark;}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:44px}
+section{display:flex;flex-direction:column;gap:14px}
+h1,h2,h3{text-wrap:balance;margin:0;line-height:1.3}
+h1{font-family:var(--font-display);font-size:clamp(26px,4vw,36px);font-weight:900}
+h2{font-size:21px;font-weight:700;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+h2 small{font-size:13px;font-weight:400;color:var(--muted)}
+h3{font-size:17px;font-weight:700}
+p{margin:0}
+a{color:var(--accent)}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;font-family:var(--font-display)}
+header{display:flex;flex-direction:column;gap:10px}
+.lede{color:var(--muted);max-width:70ch}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;color:var(--muted);align-items:center}
+
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap;line-height:1.6}
+.tob{background:var(--tob-soft);color:var(--tob)}
+.toc{background:var(--toc-soft);color:var(--toc)}
+.guess{background:var(--guess-soft);color:var(--guess);font-weight:500}
+.seg{background:var(--accent-soft);color:var(--accent);font-weight:500}
+.src{font-size:11px;color:var(--muted);font-weight:500;border:1px solid var(--line);padding:0 6px;border-radius:4px;white-space:nowrap}
+
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;border-bottom:1px solid var(--line)}
+.filters span{font-size:13px;color:var(--muted);margin-right:4px}
+.filters button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:5px 14px;border-radius:999px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.filters button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.filters .sep{width:1px;height:20px;background:var(--line);margin:0 6px}
+
+.table-box{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+#overview{min-width:860px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-size:12px;letter-spacing:.06em;color:var(--muted);font-weight:700;background:var(--bg)}
+tbody tr:last-child td,tbody tr:last-child th{border-bottom:none}
+td.name b{display:block;font-size:15px}
+td.name small{color:var(--muted)}
+.rel{font-weight:700}
+.rel-3{color:var(--hot)}.rel-2{color:var(--toc)}.rel-1{color:var(--muted)}.rel-0{color:var(--accent)}
+
+/* 加盟方案對照表 */
+#plans{min-width:1000px;table-layout:fixed}
+.adlink{display:inline-block;margin-top:6px;font-size:12px;font-weight:500;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:1px 10px;background:var(--surface)}
+.adlink:hover{border-color:var(--accent)}
+.adlink:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ads{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.ad{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.ad b{font-size:15px}
+.ad span{font-size:13px;color:var(--muted)}
+.ad.off{background:transparent;border-style:dashed}
+.opl{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+#plans .us{background:var(--accent-soft)}
+#plans thead th.us{color:var(--accent)}
+#plans col.k{width:120px}
+#plans thead th{font-size:15px;letter-spacing:0;color:var(--ink);vertical-align:bottom}
+#plans thead th small{display:block;font-size:12px;font-weight:400;color:var(--muted)}
+#plans tbody th{font-size:13px;color:var(--muted);font-weight:700;background:var(--bg)}
+#plans td ul{margin:0;padding-left:18px}
+#plans td li+li{margin-top:4px}
+.num{font-family:var(--font-display);font-weight:700;font-variant-numeric:tabular-nums}
+.na{color:var(--muted)}
+.tier{display:flex;flex-direction:column;gap:2px}
+.tier+.tier{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+.tier b{font-size:14px}
+.tier span{font-size:13px;color:var(--muted)}
+.note{font-size:13px;color:var(--muted)}
+
+.camps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.camp{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.camp .brand{font-family:var(--font-display);font-size:20px;font-weight:700}
+.chain{font-size:14px;color:var(--muted);display:flex;flex-direction:column;gap:2px}
+.chain b{color:var(--ink);font-weight:500}
+.camp p{font-size:14px}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+@media (max-width:420px){.cards{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card-head{display:flex;flex-direction:column;gap:6px}
+.card-head .tags{display:flex;flex-wrap:wrap;gap:6px}
+.card-head .sub{font-size:13px;color:var(--muted)}
+dl{margin:0;display:grid;grid-template-columns:80px 1fr;gap:8px 12px;font-size:14px}
+dt{color:var(--muted);font-weight:500}
+dd{margin:0;min-width:0}
+dd ul{margin:0;padding-left:18px}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:8px}
+footer ul{margin:0;padding-left:18px}
+.empty{color:var(--muted);font-size:14px;padding:12px}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">Takurox SESA 越南 · 競品觀察 · 2026/11</div>
+  <h1>越南洗衣競品地圖</h1>
+  <p class="lede">整理業務提供的 9 則 Facebook 素材，並用各家官網和新聞補上加盟方案細節：各家特色、加盟或開店方案、使用的機器品牌，以及目前廣告打 to B 還是 to C。</p>
+  <div class="legend">
+    <span class="pill tob">to B</span>招投資人或設備買家
+    <span class="pill toc">to C</span>招一般消費者
+    <span class="pill guess">推測</span>待查證
+    <span class="src">官網</span><span class="src">FB</span><span class="src">新聞</span>資料出處
+  </div>
+</header>
+
+<section>
+  <h2>加盟方案比較 <small>自助洗衣：SESA 和三家競品逐項對照，表格可左右滑動</small></h2>
+  <div class="table-box">
+    <table id="plans">
+      <colgroup><col class="k"><col><col><col><col></colgroup>
+      <thead><tr>
+        <th></th>
+        <th class="us">SESA Coin Laundry<small>我們｜越南SESA</small></th>
+        <th>Đô Thị Laundry<small>Spinning International｜Speed Queen</small><a class="adlink" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=714966141695898" target="_blank" rel="noopener">看刊登中廣告 ↗</a></th>
+        <th>Koalala<small>Asiatech Holding</small><a class="adlink" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=610503928812029" target="_blank" rel="noopener">看刊登中廣告 ↗</a></th>
+        <th>Cleanpro<small>LG Commercial 代理</small><a class="adlink" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=590463330818996" target="_blank" rel="noopener">看刊登中廣告 ↗</a></th>
+      </tr></thead>
+      <tbody>
+        <tr><th>合作形式</th>
+          <td class="us">開店統包，經營公司為 CleanChain <span class="src">官網</span><p class="note">6 步流程：諮詢 → 場勘 → 平面規劃 → 簽約 → 施工安裝 → 開幕</p></td>
+          <td>加盟品牌，統一招牌 <span class="src">官網</span></td>
+          <td>加盟品牌，統一識別和裝潢 <span class="src">官網</span></td>
+          <td>設備＋開店顧問，店名自取 <span class="src">FB</span></td>
+        </tr>
+        <tr><th>機器品牌</th>
+          <td class="us">AQUA（日本），半商用 <span class="src">官網</span> <span class="src">FB</span><p class="note">FB：3 組洗烘，洗 13kg／烘 12kg。官網越南配置：3 台 17kg＋1 台 27kg 洗烘二合一機</p></td>
+          <td>Speed Queen（ALS）<span class="src">官網</span></td>
+          <td>官網未寫；母公司是 Samsung 商用洗衣代理</td>
+          <td>LG Giant C Max（13／10.2kg）、Titan Max（17／14kg）<span class="src">FB</span></td>
+        </tr>
+        <tr><th>投資方案</th>
+          <td class="us"><div class="tier"><b>創業包｜<span class="num">4 億</span>起</b><span>3 組 AQUA 洗烘疊式機，機身精簡、省空間</span></div><span class="src">FB</span></td>
+          <td>
+            <div class="tier"><b>Express｜<span class="num">6 億</span>起</b><span>30–50m²，最少 2 組洗烘（官網寫 3 台 14kg）</span></div>
+            <div class="tier"><b>Standard｜<span class="num">15.9 億</span>起（主推）</b><span>50–80m²，最少 5 組（4 台 14kg＋1 台 23kg）</span></div>
+            <div class="tier"><b>Flagship｜<span class="num">29.9 億</span>起</b><span>80m² 以上，7 台（5 台 14kg＋2 台 23kg），加咖啡廳模式</span></div>
+            <span class="src">官網</span></td>
+          <td><span class="na">未公開，私訊才給試算</span>
+            <div class="tier"><span>店面 30–50m²</span></div><span class="src">官網</span></td>
+          <td>
+            <div class="tier"><b>入門｜約 <span class="num">2.5 億</span></b><span>20m²，3–4 組疊式機（預算區間 2–3 億）</span></div>
+            <div class="tier"><b>基本型｜約 <span class="num">3.5 億</span></b><span>3 組 Giant C Max</span></div>
+            <div class="tier"><b>進階｜未標價</b><span>4 組 Giant C Max＋1 台 Titan Max</span></div>
+            <span class="src">FB</span></td>
+        </tr>
+        <tr><th>加盟金／抽成</th>
+          <td class="us"><b>0</b>（不收加盟金、不抽成）</td>
+          <td>官網未寫；8/28 說明會曾推「加盟金最高 5 折」<span class="src">FB</span></td>
+          <td>官網有「加盟政策」頁，但沒公開金額</td>
+          <td class="na">未見加盟金或抽成</td>
+        </tr>
+        <tr><th>包含服務</th>
+          <td class="us"><ul><li>場勘、平面設計、設備配置建議</li><li>裝修指導、設備安裝、營運訓練</li><li>IoT 系統：機台狀態、促銷設定、營收報表；客人可查空機和剩餘時間</li><li>付款：Momo、VietQR、mPOS、ZaloPay 等</li></ul></td>
+          <td><ul><li>統包施工、2 週營運訓練</li><li>Standard 以上：出勤與營運系統</li><li>營運陪跑：Standard 12 個月、Flagship 36 個月</li><li>免費 5 天場勘</li></ul></td>
+          <td><ul><li>選址、2D/3D 設計、約 20 天完工</li><li>1 對 1 培訓</li><li>遠端管理軟體；QR、投幣、信用卡、現金付款</li><li>終身技術支援</li></ul></td>
+          <td><ul><li>模式諮詢（全自助或有人服務）</li><li>設計配置、坪效規劃</li><li>安裝、教學、營運指導</li><li>CleanproPay（QR＋國際信用卡）</li></ul></td>
+        </tr>
+        <tr><th>行銷支援</th>
+          <td class="us"><ul><li>開幕活動</li><li>拓客計畫</li></ul><span class="src">官網</span><p class="note">沒寫支援期間</p></td>
+          <td><ul><li>開幕行銷（三種方案都有）</li><li>Standard、Flagship：5 年行銷活動</li></ul><span class="src">官網</span></td>
+          <td><ul><li>開幕計畫與促銷活動</li><li>營運後推促銷方案，拉抬營收</li><li>總部線上行銷導單給加盟店</li><li>多管道宣傳方向、在地客群拓展</li></ul><span class="src">官網</span> <span class="src">FB</span></td>
+          <td class="na">官網和貼文都沒提行銷支援</td>
+        </tr>
+        <tr><th>保固</th>
+          <td class="us">整機保固 1 年＋保養服務 <span class="src">官網</span></td>
+          <td class="na">官網未寫</td>
+          <td>終身技術支援（FB）</td>
+          <td>保固 24 個月＋終身保養 <span class="src">FB</span></td>
+        </tr>
+        <tr><th>回本／獲利宣稱</th>
+          <td class="us"><b>最快 6 個月回本</b> <span class="src">FB</span></td>
+          <td><b>平均 22 個月起回本</b> <span class="src">官網</span></td>
+          <td><b>利潤率約 30–38%</b> <span class="src">FB</span></td>
+          <td class="na">未公開</td>
+        </tr>
+        <tr><th>門市規模</th>
+          <td class="us">全球 300+ 家店、7 國（美、台、泰、越、印尼、菲、馬）、40+ 年經驗 <span class="src">官網</span></td>
+          <td>胡志明市 7 家，計畫擴到峴港 <span class="src">官網</span></td>
+          <td>門市分布 7 省市（河內、胡志明市、北寧、同奈、廣寧、沙壩、清化）；FB 宣稱集團 1,000+ 洗衣點</td>
+          <td class="na">未公開</td>
+        </tr>
+        <tr><th>招商手法</th>
+          <td class="us">公開 4 億門檻＋6 個月回本，CTA「諮詢開店」</td>
+          <td>五星酒店說明會、原廠站台、當天簽約優惠</td>
+          <td>規模背書＋被動收入，送免費回本試算</td>
+          <td>低預算鉤子（20m²、2.5 億）＋教育型內容，兩個粉專分流</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">金額單位：越南盾。約略換算：1 億 ≈ 新台幣 12 萬；2.5 億 ≈ 30 萬；4 億 ≈ 48 萬；6 億 ≈ 72 萬；15.9 億 ≈ 190 萬；29.9 億 ≈ 360 萬。Đô Thị 官網寫「1,590 tỷ」「2,990 tỷ」，依越南寫法應為 15.9 億和 29.9 億。Cleanpro 官網因公司網路過濾無法直接開啟，數字來自搜尋結果摘錄。</p>
+</section>
+
+<nav class="filters" aria-label="篩選總表">
+  <span>廣告對象</span>
+  <button type="button" id="f-all" data-k="aud" data-v="all" aria-pressed="true">全部</button>
+  <button type="button" id="f-tob" data-k="aud" data-v="tob" aria-pressed="false">to B</button>
+  <button type="button" id="f-toc" data-k="aud" data-v="toc" aria-pressed="false">to C</button>
+  <i class="sep" aria-hidden="true"></i>
+  <span>市場</span>
+  <button type="button" id="s-all" data-k="seg" data-v="all" aria-pressed="true">全部</button>
+  <button type="button" id="s-self" data-k="seg" data-v="self" aria-pressed="false">自助／洗衣店</button>
+  <button type="button" id="s-opl" data-k="seg" data-v="opl" aria-pressed="false">OPL／工業</button>
+  <button type="button" id="s-home" data-k="seg" data-v="home" aria-pressed="false">家用</button>
+</nav>
+
+<section>
+  <h2>總表 <small>用上方按鈕篩選</small></h2>
+  <div class="table-box">
+    <table id="overview">
+      <thead><tr><th>品牌／店家</th><th>類型</th><th>機器品牌</th><th>加盟／開店方案</th><th>廣告對象</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>品牌陣營 <small>設備品牌 → 越南通路 → 店家</small></h2>
+  <div class="camps">
+    <div class="camp" style="background:var(--accent-soft);border-color:transparent"><span class="brand" style="color:var(--accent)">AQUA（我們）</span>
+      <div class="chain"><span>開店方案：<b>SESA Coin Laundry（CleanChain／Takurox 上洋）</b></span><span>機器：<b>AQUA（日本）半商用</b></span></div>
+      <p>創業包 4 億越南盾起，宣稱最快 6 個月回本；整機保固 1 年。全球 300+ 家店、7 國。</p></div>
+    <div class="camp"><span class="brand">LG</span>
+      <div class="chain"><span>通路：<b>Cleanpro 越南（自稱 LG Commercial 獨家代理）</b></span><span>店家：<b>Trạm Giặt、Mon Na Care</b> <span class="pill guess">推測</span></span></div>
+      <p>賣「設備＋開店顧問＋CleanproPay」，未見加盟金。同時打既有業者換機和新手投資人。</p></div>
+    <div class="camp"><span class="brand">Speed Queen</span>
+      <div class="chain"><span>集團：<b>Alliance Laundry Systems（美國）</b></span><span>通路：<b>Spinning International</b></span><span>加盟品牌：<b>Đô Thị Laundry（胡志明市 7 家）</b></span></div>
+      <p>三級加盟方案，6 億越南盾起，宣稱平均 22 個月回本。</p></div>
+    <div class="camp"><span class="brand">Samsung</span>
+      <div class="chain"><span>代理：<b>Asiatech Holding、WW Việt Nam、Wash Friends Vina</b>（Samsung 越南 2026/7/17 公布）</span><span>加盟品牌：<b>Koalala</b>（Asiatech 子公司） <span class="pill guess">推測用 Samsung</span></span><span>示範店：<b>TiTi Laundry</b>（WW Việt Nam 協助開設）</span></div>
+      <p>Samsung 越南 2026/9/21 新聞稿：TiTi Laundry 是和 WW Việt Nam 合作開的第一家店，全店使用 Samsung 商用洗烘機（洗 18kg、烘 14kg），定位為給投資人參觀的示範店。</p></div>
+    <div class="camp"><span class="brand">未標品牌</span>
+      <div class="chain"><span>OPL 批發：<b>Hitech Group（河內）</b></span><span>機器：<b>疑似中國製</b> <span class="pill guess">推測</span></span></div>
+      <p>不做加盟，直接賣工業機，主打低價。官網查無資料。</p></div>
+  </div>
+</section>
+
+
+<section>
+  <h2>OPL／工業洗衣機 <small>另一個市場，不做加盟</small></h2>
+  <div class="opl">
+    <div class="card-head"><div class="tags"><span class="pill tob">to B</span><span class="pill seg">OPL／工業</span></div>
+      <h3>Hitech Group 工業洗衣機總倉</h3><span class="sub">河內青池｜進口並經銷工業洗衣機</span></div>
+    <dl>
+      <dt>機器品牌</dt><dd>未標品牌，宣稱進口正品 <span class="pill guess">疑似中國製</span></dd>
+      <dt>方案</dt><dd>不做加盟，直接賣設備。「1 億多越南盾買整套 4 台」，從 30kg 工業洗衣機起</dd>
+      <dt>客群</dt><dd>小型洗衣廠、乾洗店、民宿、小飯店</dd>
+      <dt>特色</dt><dd><ul><li>「總倉」定位：便宜、有現貨</li><li>粉專很小（386 位追蹤者），屬地方型經銷商</li><li>官網查無資料；貼文沒提保固和售後</li></ul></dd>
+    </dl>
+    <a class="adlink" style="align-self:flex-start" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=754997597691008" target="_blank" rel="noopener">看刊登中廣告 ↗</a>
+  </div>
+</section>
+
+<section>
+  <h2>廣告檔案庫 <small>越南、刊登中，依曝光量排序</small></h2>
+  <div class="ads">
+    <a class="ad" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=590463330818996" target="_blank" rel="noopener"><b>LG Cleanpro VietNam ↗</b><span>Cleanpro｜LG 陣營｜自助洗衣</span></a>
+    <a class="ad" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=714966141695898" target="_blank" rel="noopener"><b>Tiệm Tự Giặt Sấy Đô Thị ↗</b><span>Đô Thị｜Speed Queen 陣營｜自助洗衣</span></a>
+    <a class="ad" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=610503928812029" target="_blank" rel="noopener"><b>Nhượng Quyền Giặt Sấy Tự Động Koalala ↗</b><span>Koalala 加盟招商粉專｜自助洗衣</span></a>
+    <a class="ad" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=474965122372127" target="_blank" rel="noopener"><b>Koalala Terra An Hưng ↗</b><span>Koalala 門市粉專（河內）｜自助洗衣</span></a>
+    <a class="ad" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=754997597691008" target="_blank" rel="noopener"><b>Tổng Kho Máy Giặt Công Nghiệp Hitech Group ↗</b><span>Hitech Group｜OPL／工業機</span></a>
+    <div class="ad off"><b>Máy giặt sấy công nghiệp Samsung Việt Nam</b><span>目前沒有投放廣告</span></div>
+    <div class="ad off"><b>Nhượng Quyền Giặt Sấy Wash Friends Hàn Quốc</b><span>目前沒有投放廣告（Wash Friends 也是 Samsung 代理）</span></div>
+  </div>
+  <p class="note">廣告檔案庫要登入 Facebook 才看得到完整內容。</p>
+</section>
+
+<section>
+  <h2>其他店家 <small>沒有加盟方案</small></h2>
+  <div class="cards" id="cards"></div>
+</section>
+
+<footer>
+  <span>資料來源：業務提供的 Facebook 貼文截圖（2026 年 7–11 月），以及下列網頁（2026/11/17 查詢）：</span>
+  <ul>
+    <li><a href="https://www.cleanchain-global.com/vn/join-us" target="_blank" rel="noopener">SESA／CleanChain 越南官網加盟頁</a></li>
+    <li><a href="https://dothilaundry.com.vn/" target="_blank" rel="noopener">Đô Thị Laundry 官網</a></li>
+    <li><a href="https://koalala.vn/" target="_blank" rel="noopener">Koalala 官網</a>、<a href="https://koalala.vn/gioi-thieu/" target="_blank" rel="noopener">公司介紹</a></li>
+    <li><a href="https://lgcleanpro.vn/san-pham/mo-hinh-co-ban-2/" target="_blank" rel="noopener">Cleanpro「基本型」頁</a>、<a href="https://lgcleanpro.vn/chi-20m%C2%B2-van-co-the-mo-cua-hang-giat-say-hien-dai/" target="_blank" rel="noopener">20m² 開店文章</a></li>
+    <li><a href="https://vnreview.vn/threads/samsung-ra-mat-may-giat-say-cong-nghiep-o-viet-nam-nhap-truc-tiep-tu-han-quoc.87836/" target="_blank" rel="noopener">VnReview：Samsung 在越南推出商用洗烘機（2026/7）</a></li>
+    <li><a href="https://news.samsung.com/vn/samsung-ra-mat-giai-phap-giat-say-cong-nghiep-dong-hanh-cung-doanh-nghiep-toi-uu-van-hanh-va-phat-trien-ben-vung" target="_blank" rel="noopener">Samsung 越南新聞稿：推出商用洗烘方案、三家代理（2026/7/17）</a></li>
+    <li><a href="https://news.samsung.com/vn/samsung-dong-hanh-cung-doi-tac-phat-trien-mo-hinh-cua-hang-giat-say-tu-dong-khai-truong-cua-hang-dau-tien-titi-laundry" target="_blank" rel="noopener">Samsung 越南新聞稿：TiTi Laundry 開幕（2026/9/21）</a></li>
+  </ul>
+</footer>
+</div>
+
+<script>
+const G='<span class="pill guess">推測</span>';
+const data=[
+ {name:"SESA Coin Laundry",sub:"我們｜越南SESA",type:"開店統包",seg:"self",aud:["tob"],rel:0,relTxt:"自家",
+  brand:"AQUA 半商用（洗 13kg／烘 12kg）",planShort:"創業包 4 億越南盾起，3 組洗烘；宣稱最快 6 個月回本",card:false},
+ {name:"Cleanpro 越南",sub:"LG Commercial 代理｜粉專：LG Cleanpro VietNam、Cleanpro Express Vietnam",type:"設備代理＋開店顧問",seg:"self",aud:["tob"],rel:3,relTxt:"最直接",
+  brand:"LG Giant C Max、Titan Max",planShort:"開店顧問，未見加盟金；約 2.5 億越南盾起",card:false},
+ {name:"Đô Thị Laundry",sub:"Spinning International（Speed Queen／ALS）",type:"加盟品牌",seg:"self",aud:["tob"],rel:3,relTxt:"直接",
+  brand:"Speed Queen",planShort:"三級加盟：6 億／15.9 億／29.9 億越南盾起；宣稱 22 個月回本",card:false},
+ {name:"Koalala",sub:"Asiatech Holding",type:"加盟品牌",seg:"self",aud:["tob"],rel:3,relTxt:"直接",
+  brand:"未公開；疑似 Samsung "+G,planShort:"加盟一條龍，投資額未公開；宣稱利潤率 30–38%",card:false},
+ {name:"Hitech Group",sub:"河內青池｜工業洗衣機總倉",type:"OPL／工業機批發",seg:"opl",aud:["tob"],rel:3,relTxt:"直接（OPL）",
+  brand:"未標品牌，疑似中國製 "+G,planShort:"不做加盟；1 億多越南盾買 4 台",card:false},
+ {name:"LG WashTower",sub:"LG Vietnam 官方",type:"家用洗烘塔",seg:"home",aud:["toc"],rel:1,relTxt:"間接",
+  brand:"LG WashTower WT1410NHE（洗 14kg／烘 10kg）",planShort:"無（家用零售促銷）",card:true,
+  feats:["11 月 LG.com 獨家：6,300 多萬降到 3,000 多萬越南盾","價格只露一半，逼人私訊問價","米色木紋的生活感視覺"]},
+ {name:"TiTi Laundry",sub:"胡志明市第 7 郡｜24 小時自助",type:"自助洗衣店",seg:"self",aud:["toc"],rel:2,relTxt:"客戶畫像",
+  brand:"Samsung 商用洗烘機（Samsung 新聞稿確認）",planShort:"無；Samsung 和 WW Việt Nam 的示範店",card:true,
+  feats:["洗 18kg＋烘 14kg 一組 55,000 越南盾","免費 Omo 洗衣精＋Downy 柔軟精","吉祥物＋節日檔期（11/11、雨天）","頁面連結 samsung.com 和科技媒體"]},
+ {name:"Trạm Giặt",sub:"胡志明市新平郡｜9/26 開幕",type:"自助洗衣店",seg:"self",aud:["toc"],rel:2,relTxt:"客戶畫像",
+  brand:"LG Giant C Max "+G+"（價目表寫洗 13kg／烘 10kg）",planShort:"無；可能是 Cleanpro 客戶",card:true,
+  feats:["開幕 4 天洗烘費 100% 退還","會員集點、儲值回饋（10/10 送 21%）","學生分眾素材、棉被等大件品項"]},
+ {name:"Mon Na Care",sub:"胡志明市新富郡",type:"代洗店（有人服務）",seg:"self",aud:["toc"],rel:2,relTxt:"潛在客戶",
+  brand:"灰色疊式機，疑似 LG Giant C "+G,planShort:"無",card:true,
+  feats:["洗、烘、摺好，按件或公斤收費","接棉被、床單、枕頭，有大量毛巾布草","AI 特效短影片，互動很低"]},
+ {name:"Mama Wash",sub:"胡志明市｜11/7 開第 2 家分店",type:"多元洗護連鎖",seg:"self",aud:["toc"],rel:2,relTxt:"潛在客戶",
+  brand:"截圖看不出",planShort:"無",card:true,
+  feats:["洗衣＋洗鞋＋乾洗／蒸洗＋洗燙","開幕舞獅、財神人偶、新客 49% 折扣","用 Zalo 當客服管道"]}
+];
+const segTxt={self:"自助／洗衣店",opl:"OPL／工業",home:"家用"};
+const audPill=a=>a.map(x=>`<span class="pill ${x}">${x==="tob"?"to B":"to C"}</span>`).join(" ");
+const st={aud:"all",seg:"all"};
+function render(){
+  const list=data.filter(d=>(st.aud==="all"||d.aud.includes(st.aud))&&(st.seg==="all"||d.seg===st.seg));
+  document.getElementById("tbody").innerHTML=list.length?list.map(d=>`<tr>
+    <td class="name"><b>${d.name}</b><small>${d.sub}</small></td>
+    <td>${d.type}<br><span class="pill seg">${segTxt[d.seg]}</span></td>
+    <td>${d.brand}</td><td>${d.planShort}</td><td>${audPill(d.aud)}</td></tr>`).join(""):`<tr><td colspan="5" class="empty">沒有符合篩選條件的項目。</td></tr>`;
+}
+document.getElementById("cards").innerHTML=data.filter(d=>d.card).map(d=>`<article class="card">
+  <div class="card-head"><div class="tags">${audPill(d.aud)}<span class="pill seg">${segTxt[d.seg]}</span></div>
+    <h3>${d.name}</h3><span class="sub">${d.sub}</span></div>
+  <dl><dt>類型</dt><dd>${d.type}</dd>
+    <dt>機器品牌</dt><dd>${d.brand}</dd>
+    <dt>特色</dt><dd><ul>${d.feats.map(f=>`<li>${f}</li>`).join("")}</ul></dd></dl></article>`).join("");
+document.querySelectorAll(".filters button").forEach(b=>b.addEventListener("click",()=>{
+  st[b.dataset.k]=b.dataset.v;
+  document.querySelectorAll(`.filters button[data-k="${b.dataset.k}"]`).forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));
+  render();
+}));
+render();
+</script>
+
+</html>
