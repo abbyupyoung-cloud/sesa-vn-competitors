@@ -75,7 +75,8 @@ td.name small{color:var(--muted)}
 .rel-3{color:var(--hot)}.rel-2{color:var(--toc)}.rel-1{color:var(--muted)}.rel-0{color:var(--accent)}
 
 /* 加盟方案對照表 */
-#plans{min-width:1000px;table-layout:fixed}
+#plans{min-width:1560px;table-layout:fixed}
+@media (min-width:1240px){.plans-sec{width:calc(100vw - 64px);max-width:1880px;align-self:center}}
 .adlink{display:inline-block;margin-top:6px;font-size:12px;font-weight:500;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:1px 10px;background:var(--surface)}
 .adlink:hover{border-color:var(--accent)}
 .adlink:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -99,6 +100,8 @@ td.name small{color:var(--muted)}
 .tier+.tier{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
 .tier b{font-size:14px}
 .tier span{font-size:13px;color:var(--muted)}
+.tier .per{color:var(--accent);font-weight:700;font-size:12.5px}
+#plans tbody th small{display:block;font-weight:400;font-size:11.5px;margin-top:4px;line-height:1.5}
 .note{font-size:13px;color:var(--muted)}
 
 .camps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
@@ -132,94 +135,135 @@ footer ul{margin:0;padding-left:18px}
     <span class="pill tob">to B</span>招投資人或設備買家
     <span class="pill toc">to C</span>招一般消費者
     <span class="pill guess">推測</span>待查證
-    <span class="src">官網</span><span class="src">FB</span><span class="src">新聞</span>資料出處
+    <span class="src">官網</span><span class="src">FB</span><span class="src">新聞</span><span class="src">報告</span><span class="src">考察</span>資料出處（報告＝內部競品分析報告 2026/11/17；考察＝TiTi、Omywash 實地考察報告 2026/11）
   </div>
 </header>
 
-<section>
-  <h2>加盟方案比較 <small>自助洗衣：SESA 和三家競品逐項對照，表格可左右滑動</small></h2>
+<section class="plans-sec">
+  <h2>加盟方案比較 <small>自助洗衣：SESA 和六家競品逐項對照；寬螢幕可一次看完，較窄時左右滑動</small></h2>
   <div class="table-box">
     <table id="plans">
-      <colgroup><col class="k"><col><col><col><col></colgroup>
+      <colgroup><col class="k"><col><col><col><col><col><col><col></colgroup>
       <thead><tr>
         <th></th>
         <th class="us">SESA Coin Laundry<small>我們｜越南SESA</small></th>
         <th>Đô Thị Laundry<small>Spinning International｜Speed Queen</small><a class="adlink" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=714966141695898" target="_blank" rel="noopener">看刊登中廣告 ↗</a></th>
         <th>Koalala<small>Asiatech Holding｜Spinz</small><a class="adlink" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=610503928812029" target="_blank" rel="noopener">看刊登中廣告 ↗</a></th>
         <th>Cleanpro<small>LG Commercial 代理</small><a class="adlink" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=590463330818996" target="_blank" rel="noopener">看刊登中廣告 ↗</a></th>
+        <th>Áo Mây<small>多元洗護加盟｜洗烘＋乾洗＋洗鞋</small><a class="adlink" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=1801578180147717" target="_blank" rel="noopener">看刊登中廣告 ↗</a></th>
+        <th>Cô Tiên Xanh<small>Cô Tiên Xanh Laundry｜Electrolux</small><a class="adlink" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=107491430818391" target="_blank" rel="noopener">看刊登中廣告 ↗</a></th>
+        <th>OMP Omywash<small>OMP Alliance｜15m² 貨櫃洗衣站</small><a class="adlink" href="https://www.facebook.com/Omywash" target="_blank" rel="noopener">FB 粉專 ↗</a></th>
       </tr></thead>
       <tbody>
         <tr><th>合作形式</th>
           <td class="us">開店統包，經營公司為 CleanChain <span class="src">官網</span><p class="note">6 步流程：諮詢 → 場勘 → 平面規劃 → 簽約 → 施工安裝 → 開幕</p></td>
           <td>加盟品牌，統一招牌 <span class="src">官網</span></td>
           <td>加盟品牌，統一識別和裝潢 <span class="src">官網</span></td>
-          <td>官網列三種合作 <span class="src">官網</span><ul><li>合作經營：業主出店面，Cleanpro 出設備、管理系統和人員，依約分潤</li><li>自營：傳統型或全自動型</li><li>投資包：投資人出資，Cleanpro 代營運，手機看營收</li></ul></td>
+          <td>官網列三種合作 <span class="src">官網</span><ul><li>合作經營：業主出店面（至少 5 年），Cleanpro 出設備、管理系統和人員，依約分潤</li><li>自營：傳統型或全自動型</li><li>投資包：投資人出資，Cleanpro 代營運，手機看營收</li></ul></td>
+          <td>加盟連鎖，多元服務店（洗烘、乾洗、洗鞋、到府收送）<span class="src">FB</span><p class="note">廣告寫技術和營運經驗來自 Latusa 洗衣廠體系</p></td>
+          <td>加盟品牌，三級方案 BASIC／STANDARD／PREMIUM <span class="src">官網</span><p class="note">PREMIUM 有區域獨家</p></td>
+          <td>OMP Alliance 推出的可移動貨櫃自助洗衣站，約 15m²，24 小時無人營運 <span class="src">考察</span><p class="note">未見加盟方案</p></td>
         </tr>
         <tr><th>機器品牌</th>
           <td class="us">AQUA（日本），半商用 <span class="src">官網</span><p class="note">越南門市配置：3 台 17kg＋1 台 27kg 洗烘二合一機</p></td>
           <td>Speed Queen（ALS）<span class="src">官網</span></td>
           <td>Spinz（馬來西亞）<span class="src">官網</span><p class="note">官網 2024/6 文章介紹：10–100kg 商用洗烘機＋IoT 管理系統。母公司 Asiatech 2026/7 起也成為 Samsung 商用洗衣代理</p></td>
           <td>LG Giant C Max（13／10.2kg）、Titan Max（17／14kg）<span class="src">官網</span><p class="note">官網另有 Dexter（美國）機台案例</p></td>
+          <td>官網沒寫洗烘機品牌；Chạm Mây 方案含 LG Styler <span class="src">官網</span></td>
+          <td>Electrolux <span class="src">官網</span></td>
+          <td>考察報告沒寫明；列在三星項下 <span class="pill guess">推測</span> <span class="src">考察</span></td>
         </tr>
-        <tr><th>投資方案</th>
-          <td class="us"><div class="tier"><b>創業包｜<span class="num">4 億</span>起</b><span>AQUA 洗烘二合一機（官網越南配置 3 台 17kg＋1 台 27kg）</span></div><span class="src">FB</span> <span class="src">官網</span></td>
+        <tr><th>投資方案<small>藍字＝每台平均：方案價 ÷ 洗烘機台數（1 組＝1 洗＋1 烘），含施工等費用，不是機器單價</small></th>
+          <td class="us"><div class="tier"><b>小 AQUA｜<span class="num">2.5 億</span></b><span>3 台小 AQUA</span><span class="per">每台約 8,300 萬</span></div><div class="tier"><b>All-in-One｜<span class="num">5 億</span></b><span>1 台 AQUA All-in-One＋2 台小 AQUA</span><span class="per">每台平均約 1.67 億</span></div><span class="src">報告</span><p class="note">FB 廣告寫「創業包 4 億起」</p></td>
           <td>
-            <div class="tier"><b>Express｜<span class="num">6 億</span>起</b><span>30–50m²，兩套洗衣／乾衣機</span></div>
-            <div class="tier"><b>Standard｜<span class="num">15.9 億</span>起（主推）</b><span>50–80m²，最少 5 組（4 台 14kg＋1 台 23kg）</span></div>
-            <div class="tier"><b>Flagship｜<span class="num">29.9 億</span>起</b><span>80m² 以上，7 台（5 台 14kg＋2 台 23kg），加咖啡廳模式</span></div>
+            <div class="tier"><b>Express｜<span class="num">6 億</span>起</b><span>30–50m²，兩套洗衣／乾衣機</span><span class="per">每台約 1.5 億（4 台）</span></div>
+            <div class="tier"><b>Standard｜<span class="num">15.9 億</span>起（主推）</b><span>50–80m²，最少 5 組（4 台 14kg＋1 台 23kg）</span><span class="per">每台約 1.59 億（10 台）</span></div>
+            <div class="tier"><b>Flagship｜<span class="num">29.9 億</span>起</b><span>80m² 以上，7 台（5 台 14kg＋2 台 23kg），加咖啡廳模式</span><span class="per">台數計算方式未明，不估算</span></div>
             <span class="src">官網</span></td>
           <td>
-            <div class="tier"><b>小店｜約 <span class="num">3 億</span></b><span>20–30m²，4–6 台洗烘機</span></div>
-            <div class="tier"><b>中店｜約 <span class="num">5 億</span></b><span>30–50m²，6–10 台洗烘機</span></div>
-            <span class="src">官網</span><p class="note">官網 2024/6 文章的參考值；加盟頁寫店面 30–50m²。另有彈性財務方案</p></td>
+            <div class="tier"><b>小店｜約 <span class="num">3 億</span></b><span>20–30m²，4–6 台洗烘機</span><span class="per">每台約 5,000–7,500 萬</span></div>
+            <div class="tier"><b>中店｜約 <span class="num">5 億</span></b><span>30–50m²，6–10 台洗烘機</span><span class="per">每台約 5,000–8,300 萬</span></div>
+            <span class="src">官網</span> <span class="src">報告</span><p class="note">官網 2024/6 文章的參考值；加盟頁寫店面 30–50m²。另有彈性財務方案。報告：標準方案 2 洗＋2 烘，業界估算 3.5–6 億（非報價）</p></td>
           <td>
-            <div class="tier"><b>入門｜約 <span class="num">2.5 億</span></b><span>20m²，3–4 組疊式機（官網 2026/9/7 文章）</span></div>
-            <div class="tier"><b>基本型｜<span class="num">3–3.5 億</span></b><span>3 組 Giant C Max，最小 18–25m²</span></div>
-            <div class="tier"><b>自營傳統型｜未標價</b><span>3 組 Giant C Max＋1 台 Titan Max</span></div>
-            <div class="tier"><b>自營全自動型｜未標價</b><span>5 組 Giant C Max＋1 台 Titan Max，自動投劑、收款系統</span></div>
-            <span class="src">FB</span> <span class="src">官網</span></td>
+            <div class="tier"><b>入門｜約 <span class="num">2.5 億</span></b><span>20m²，3–4 組疊式機（官網 2026/9/7 文章）</span><span class="per">每台約 3,100–4,200 萬（6–8 台）</span></div>
+            <div class="tier"><b>基本型｜<span class="num">3–3.5 億</span></b><span>3 組 Giant C Max，最小 18–25m²</span><span class="per">每台約 5,000–5,800 萬（6 台）</span></div>
+            <div class="tier"><b>自營傳統型｜約 <span class="num">4.5 億</span>（參考）</b><span>3 組 Giant C Max＋1 台 Titan Max</span><span class="per">每台約 5,600 萬（報告算 8 台）</span></div>
+            <div class="tier"><b>自營全自動型｜未標價</b><span>5 組 Giant C Max＋1 台 Titan Max，自動投劑、收款系統</span><span class="per">未標價，無法估算</span></div>
+            <span class="src">FB</span> <span class="src">官網</span> <span class="src">報告</span></td>
+          <td>
+            <div class="tier"><b>Khởi Nguồn｜<span class="num">1.5 億</span>起</b><span>3 組 8kg 洗烘＋1 台洗鞋機</span><span class="per">每台約 2,500 萬（6 台，不含洗鞋機）</span></div>
+            <div class="tier"><b>Trải Sáng｜<span class="num">2.5 億</span>起</b><span>1 組 14kg＋3 組標準洗烘、洗鞋烘鞋機、蒸汽熨斗</span><span class="per">每台約 3,100 萬（8 台）</span></div>
+            <div class="tier"><b>Chạm Mây｜<span class="num">3.9 億</span>起</b><span>再加 LG Styler、去漬台、吸風燙台</span><span class="per">每台約 6,500 萬（報告算 6 台＋Styler）</span></div>
+            <span class="src">官網</span><p class="note">官網 2026/11/6 更新；運費、裝修、稅、押金、周轉金另計</p></td>
+          <td>
+            <div class="tier"><b>BASIC｜未標價</b><span>3 台 10kg 洗衣＋3 台 8kg 烘衣</span></div>
+            <div class="tier"><b>STANDARD｜未標價</b><span>4 台 10kg 洗衣＋4 台 8kg 烘衣，含洗鞋、蒸燙設備、管理 App</span></div>
+            <div class="tier"><b>PREMIUM｜未標價</b><span>4 洗＋4 烘大容量，加 UV 鞋櫃、蒸衣櫃、到府收送</span><span class="per">未標價，無法估算</span></div>
+            <span class="src">官網</span><p class="note">價格要私訊索取</p></td>
+          <td><div class="tier"><b>一站｜<span class="num">約 5 億</span></b><span>含貨櫃、冷氣、招牌、電子支付，開到好</span><span class="per">台數未明，無法估算</span></div><div class="tier"><b>機器報價｜<span class="num">6,500 萬</span>一組</b><span>1 洗＋1 烘</span><span class="per">機器單價約 3,250 萬／台</span></div><span class="src">考察</span> <span class="src">報告</span><p class="note">報告：Omywash 洗烘站報價 7–10 億</p></td>
         </tr>
         <tr><th>行銷支援</th>
           <td class="us"><ul><li>開幕活動</li><li>拓客計畫</li></ul><span class="src">官網</span><p class="note">沒寫支援期間</p></td>
           <td><ul><li>開幕行銷（三種方案都有）</li><li>Standard、Flagship：5 年行銷活動</li></ul><span class="src">官網</span></td>
-          <td><ul><li>開幕計畫與促銷活動</li><li>營運後推促銷方案，拉抬營收</li><li>總部線上行銷導單給加盟店</li><li>多管道宣傳方向、在地客群拓展</li></ul><span class="src">官網</span> <span class="src">FB</span></td>
+          <td><ul><li>開幕計畫與促銷活動</li><li>營運後推促銷方案，拉抬營收</li><li>總部線上行銷導單給加盟店</li><li>多管道宣傳方向、在地客群拓展</li><li>前 6 個月價值 6,000 萬盾的行銷方案＋營運訓練</li></ul><span class="src">官網</span> <span class="src">FB</span> <span class="src">報告</span></td>
           <td><ul><li>傳統型：含方圓 3km 區域行銷費</li><li>全自動型：含前 3 個月行銷費</li></ul><span class="src">官網</span></td>
+          <td><ul><li>開幕起協助擬定行銷策略</li></ul><span class="src">FB</span><p class="note">官網：各方案行銷項目不同，沒寫細節</p></td>
+          <td><ul><li>BASIC：開幕週行銷</li><li>STANDARD：Google 地標＋首週 FB 廣告＋10 篇宣傳文</li><li>PREMIUM：Google＋1 個月廣告＋30 篇宣傳文＋開幕活動</li></ul><span class="src">官網</span></td>
+          <td class="na">未公開</td>
         </tr>
         <tr><th>加盟金／抽成</th>
           <td class="us"><b>0</b>（不收加盟金、不抽成）</td>
           <td>官網未寫；8/28 說明會曾推「加盟金最高 5 折」<span class="src">FB</span></td>
           <td>官網有「加盟政策」頁，但沒公開金額</td>
           <td>未見加盟金；合作經營模式依約分潤 <span class="src">官網</span></td>
+          <td>「3 không」：不收定期加盟費、不收訓練費、不抽營收；11/16 廣告寫不收加盟費 <span class="src">FB</span><p class="note">報告：舊文章曾寫一次性加盟費＋商圈保護、停業回購設備</p></td>
+          <td class="na">官網未寫</td>
+          <td class="na">未公開</td>
         </tr>
         <tr><th>包含服務</th>
           <td class="us"><ul><li>場勘、平面設計、設備配置建議</li><li>裝修指導、設備安裝、營運訓練</li><li>IoT 系統：機台狀態、促銷設定、營收報表；客人可查空機和剩餘時間</li><li>付款：Momo、VietQR、mPOS、ZaloPay 等</li></ul></td>
           <td><ul><li>統包施工、2 週營運訓練</li><li>Standard 以上：出勤與營運系統</li><li>營運陪跑：Standard 12 個月、Flagship 36 個月</li><li>免費 5 天場勘</li></ul></td>
           <td><ul><li>選址、2D/3D 設計、約 20 天完工</li><li>1 對 1 培訓</li><li>遠端管理軟體；QR、投幣、信用卡、現金付款</li><li>終身技術支援</li></ul></td>
           <td><ul><li>找店面、場勘</li><li>免費 3D 設計、施工、水電排氣</li><li>安裝、營運、開幕後支援</li><li>CleanproPay（QR＋國際信用卡）</li></ul><span class="src">官網</span> <span class="src">FB</span></td>
+          <td><ul><li>選址、品牌識別設計</li><li>機台安裝、技術移轉</li><li>人員訓練</li></ul><span class="src">FB</span></td>
+          <td><ul><li>選址、設計、安裝</li><li>員工訓練</li><li>遠端管理、即時看營收（PREMIUM 加攝影機）</li><li>終身營運支援；20–30 天開幕</li></ul><span class="src">官網</span> <span class="src">FB</span></td>
+          <td><ul><li>貨櫃內整合洗烘機、水電、消防、QR 支付</li><li>遠端數位管理營收和營運</li><li>自有會員系統（考察時 62 位會員）</li><li>不收國際信用卡</li></ul><span class="src">考察</span></td>
         </tr>
         <tr><th>保固</th>
           <td class="us">整機保固 1 年＋保養服務 <span class="src">官網</span></td>
           <td class="na">官網未寫</td>
           <td>終身技術支援（FB）</td>
           <td>依合約分 3 年／2 年／1 年保固保養三種方案 <span class="src">官網</span><p class="note">FB 貼文寫保固 24 個月＋終身保養</p></td>
+          <td class="na">官網未寫，要求在合約中確認</td>
+          <td class="na">官網未寫</td>
+          <td class="na">未公開</td>
         </tr>
         <tr><th>回本／獲利宣稱</th>
           <td class="us"><b>最快 6 個月回本</b> <span class="src">FB</span></td>
           <td><b>平均 22 個月起回本</b> <span class="src">官網</span></td>
-          <td><b>利潤率約 30–38%</b> <span class="src">FB</span></td>
+          <td><b>利潤率約 30–38%</b> <span class="src">FB</span><p class="note">報告：ROI 文章寫 10–14 個月回本，另一篇寫 18–24 個月</p></td>
+          <td class="na">未公開</td>
+          <td><b>12–18 個月回本</b> <span class="src">FB</span><p class="note">報告：舊文章依方案寫 18–20／15–18／12–15 個月</p></td>
+          <td class="na">未公開（只寫穩定獲利）</td>
           <td class="na">未公開</td>
         </tr>
         <tr><th>門市規模</th>
           <td class="us">全球 300+ 家店、7 國（美、台、泰、越、印尼、菲、馬）、40+ 年經驗 <span class="src">官網</span></td>
           <td>胡志明市 7 家，計畫擴到峴港 <span class="src">官網</span></td>
-          <td>門市分布 7 省市（河內、胡志明市、北寧、同奈、廣寧、沙壩、清化）；FB 宣稱集團 1,000+ 洗衣點</td>
-          <td class="na">未公開</td>
+          <td>門市分布 7 省市（河內、胡志明市、北寧、同奈、廣寧、沙壩、清化）；FB 宣稱集團 1,000+ 洗衣點<p class="note">報告：2024 年開第一家，官網曾列 14 個地址，現有營業數未明</p></td>
+          <td>總門市數未公開；2017 年成立 <span class="src">報告</span><p class="note">公開案例：河內 The Wash Hub（9 Hàng Chĩnh，2025）</p></td>
+          <td>未公開；廣告寫正在擴展南部 <span class="src">FB</span><p class="note">胡志明市新富郡、Vinhomes Grand Park、峴港門市粉專也在投 to C 廣告</p></td>
+          <td>2016 年起；廣告寫 30+ 家店 <span class="src">FB</span><p class="note">官網寫 10+ 家加盟店、20+ 省市，分店列表 22 筆（多在同塔、永隆、芹苴、胡志明市）</p></td>
+          <td>公開確認 1 個試點：Central Mall Satra Võ Văn Kiệt（商場和公寓大樓下方）<span class="src">考察</span><p class="note">目標擴展到主要城市，營運據點數未確認</p></td>
         </tr>
         <tr><th>招商手法</th>
-          <td class="us">公開 4 億門檻＋6 個月回本，CTA「諮詢開店」</td>
+          <td class="us">FB 公開 4 億門檻＋6 個月回本，CTA「諮詢開店」</td>
           <td>五星酒店說明會、原廠站台、當天簽約優惠</td>
           <td>規模背書＋被動收入，送免費回本試算</td>
           <td>低預算鉤子（20m²、2.5 億）＋教育型內容，兩個粉專分流；和 LG 韓國參加 VietFranchise 2026 展（10/29–31）</td>
+          <td>零抽成「3 không」＋2026 投資趨勢、零經驗也能開店；留資料送投資／營收／回本試算</td>
+          <td>10 年經驗＋30 家店背書，從 A 到 Z 陪跑；私訊索取方案和費用</td>
+          <td>官方和主流媒體發布上市消息；主打可放在宿舍、工業區、醫院、住宅區和閒置土地 <span class="src">考察</span><p class="note">廣告檔案庫查無刊登中廣告（2026/11/18）</p></td>
         </tr>
       </tbody>
     </table>
@@ -255,7 +299,7 @@ footer ul{margin:0;padding-left:18px}
   <div class="camps">
     <div class="camp" style="background:var(--accent-soft);border-color:transparent"><span class="brand" style="color:var(--accent)">AQUA（我們）</span>
       <div class="chain"><span>開店方案：<b>SESA Coin Laundry（CleanChain／Takurox 上洋）</b></span><span>機器：<b>AQUA（日本）半商用</b></span></div>
-      <p>創業包 4 億越南盾起，宣稱最快 6 個月回本；整機保固 1 年。全球 300+ 家店、7 國。</p></div>
+      <p>小 AQUA 2.5 億、All-in-One 5 億越南盾兩種方案（FB 廣告寫 4 億起、最快 6 個月回本）；整機保固 1 年。全球 300+ 家店、7 國。</p></div>
     <div class="camp"><span class="brand">LG</span>
       <div class="chain"><span>通路：<b>Cleanpro 越南（自稱 LG Commercial 獨家代理）</b></span><span>店家：<b>Trạm Giặt、Mon Na Care</b> <span class="pill guess">推測</span></span></div>
       <p>三種合作：合作經營分潤、自營、投資代營運；未見加盟金。同時打既有業者換機和新手投資人。</p></div>
@@ -263,8 +307,8 @@ footer ul{margin:0;padding-left:18px}
       <div class="chain"><span>集團：<b>Alliance Laundry Systems（美國）</b></span><span>通路：<b>Spinning International</b></span><span>加盟品牌：<b>Đô Thị Laundry（胡志明市 7 家）</b></span></div>
       <p>三級加盟方案，6 億越南盾起，宣稱平均 22 個月回本。</p></div>
     <div class="camp"><span class="brand">Samsung</span>
-      <div class="chain"><span>代理：<b>Asiatech Holding、WW Việt Nam、Wash Friends Vina</b>（Samsung 越南 2026/7/17 公布）</span><span>加盟品牌：<b>Koalala</b>（Asiatech 子公司；官網介紹的機器是 Spinz）</span><span>示範店：<b>TiTi Laundry</b>（WW Việt Nam 協助開設）</span></div>
-      <p>Samsung 越南 2026/9/21 新聞稿：TiTi Laundry 是和 WW Việt Nam 合作開的第一家店，全店使用 Samsung 商用洗烘機（洗 18kg、烘 14kg），定位為給投資人參觀的示範店。</p></div>
+      <div class="chain"><span>代理：<b>Asiatech Holding、WW Việt Nam、Wash Friends Vina</b>（Samsung 越南 2026/7/17 公布）</span><span>加盟品牌：<b>Koalala</b>（Asiatech 子公司；官網介紹的機器是 Spinz）</span><span>示範店：<b>TiTi Laundry</b>（WW Việt Nam 協助開設；WW 目標 7 個據點）</span><span>貨櫃洗衣站：<b>OMP Omywash</b>（OMP Alliance）<span class="src">考察</span> <span class="pill guess">推測</span></span></div>
+      <p>Samsung 越南 2026/9/21 新聞稿：TiTi Laundry 是和 WW Việt Nam 合作開的第一家店，全店使用 Samsung 商用洗烘機（洗 18kg、烘 14kg），定位為給投資人參觀的示範店。</p><p>實地考察：TiTi 不是加盟店，是客戶自己開、自己施工，機器和施工約 3 億；Samsung 洗烘機報價 6,500 萬一組。Omywash 考察報告也列在三星項下、報價同為 6,500 萬一組，但沒寫明機器品牌。</p></div>
     <div class="camp"><span class="brand">未標品牌</span>
       <div class="chain"><span>OPL 批發：<b>Hitech Group（河內）</b></span><span>機器：<b>疑似中國製</b> <span class="pill guess">推測</span></span></div>
       <p>不做加盟，直接賣工業機，主打低價。官網查無資料。</p></div>
@@ -285,6 +329,17 @@ footer ul{margin:0;padding-left:18px}
     </dl>
     <a class="adlink" style="align-self:flex-start" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=754997597691008" target="_blank" rel="noopener">看刊登中廣告 ↗</a>
   </div>
+  <div class="opl" style="margin-top:16px">
+    <div class="card-head"><div class="tags"><span class="pill tob">to B</span><span class="pill seg">OPL／工業</span></div>
+      <h3>CleanChem Vietnam</h3><span class="sub">工業洗衣設備經銷｜2012 年成立</span></div>
+    <dl>
+      <dt>機器品牌</dt><dd>HOOP（中國）</dd>
+      <dt>方案</dt><dd>不做加盟，依專案賣設備；主推 HOOP 15kg 洗烘組</dd>
+      <dt>客群</dt><dd>洗衣店、洗衣廠、飯店、<b>民宿</b>、小飯店</dd>
+      <dt>特色</dt><dd><ul><li>10/29、11/4 起投廣告，主打「升級洗衣廠」和「民宿、小飯店自己洗」</li><li>報告：2026/11/12 公布交付日產 3 噸的洗衣工廠</li></ul></dd>
+    </dl>
+    <a class="adlink" style="align-self:flex-start" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=748863864986368" target="_blank" rel="noopener">看刊登中廣告 ↗</a>
+  </div>
 </section>
 
 <section>
@@ -295,6 +350,9 @@ footer ul{margin:0;padding-left:18px}
     <a class="ad" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=610503928812029" target="_blank" rel="noopener"><b>Nhượng Quyền Giặt Sấy Tự Động Koalala ↗</b><span>Koalala 加盟招商粉專｜自助洗衣</span></a>
     <a class="ad" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=474965122372127" target="_blank" rel="noopener"><b>Koalala Terra An Hưng ↗</b><span>Koalala 門市粉專（河內）｜自助洗衣</span></a>
     <a class="ad" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=754997597691008" target="_blank" rel="noopener"><b>Tổng Kho Máy Giặt Công Nghiệp Hitech Group ↗</b><span>Hitech Group｜OPL／工業機</span></a>
+    <a class="ad" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=1801578180147717" target="_blank" rel="noopener"><b>Áo Mây - Chuỗi Nhượng Quyền Giặt Sấy ↗</b><span>Áo Mây 加盟招商粉專｜自助洗衣</span></a>
+    <a class="ad" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=107491430818391" target="_blank" rel="noopener"><b>Giặt Sấy CÔ TIÊN XANH ↗</b><span>Cô Tiên Xanh｜Electrolux｜自助洗衣</span></a>
+    <a class="ad" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=748863864986368" target="_blank" rel="noopener"><b>CleanChem Vietnam ↗</b><span>CleanChem｜HOOP｜OPL／工業機</span></a>
     <div class="ad off"><b>Máy giặt sấy công nghiệp Samsung Việt Nam</b><span>目前沒有投放廣告</span></div>
     <div class="ad off"><b>Nhượng Quyền Giặt Sấy Wash Friends Hàn Quốc</b><span>目前沒有投放廣告（Wash Friends 也是 Samsung 代理）</span></div>
   </div>
@@ -312,6 +370,8 @@ footer ul{margin:0;padding-left:18px}
     <li><a href="https://www.cleanchain-global.com/vn/join-us" target="_blank" rel="noopener">SESA／CleanChain 越南官網加盟頁</a></li>
     <li><a href="https://dothilaundry.com.vn/" target="_blank" rel="noopener">Đô Thị Laundry 官網</a></li>
     <li><a href="https://koalala.vn/" target="_blank" rel="noopener">Koalala 官網</a>、<a href="https://koalala.vn/gioi-thieu/" target="_blank" rel="noopener">公司介紹</a>、<a href="https://koalala.vn/tu-van-setup-cua-hang-tu-giat-tu-say-koalala/" target="_blank" rel="noopener">開店諮詢文章（2024/6）</a>、<a href="https://koalala.vn/gioi-thieu-he-thong-thong-may-giat-say-tu-dong-spinz/" target="_blank" rel="noopener">Spinz 機器介紹（2024/6）</a></li>
+    <li><a href="https://aomay.vn/nhuong-quyen-giat-say/" target="_blank" rel="noopener">Áo Mây 加盟頁</a></li>
+    <li><a href="https://cotienxanhlaundry.com/nhuong-quyen" target="_blank" rel="noopener">Cô Tiên Xanh 加盟頁</a>（<a href="https://cotienxanhlaundry.com/basic-khoinghiep" target="_blank" rel="noopener">BASIC</a>、<a href="https://cotienxanhlaundry.com/standard-tieuchuan" target="_blank" rel="noopener">STANDARD</a>、<a href="https://cotienxanhlaundry.com/premium-caocap" target="_blank" rel="noopener">PREMIUM</a>）</li>
     <li><a href="https://lgcleanpro.vn/nhuong-quyen/" target="_blank" rel="noopener">Cleanpro 加盟頁</a>、<a href="https://lgcleanpro.vn/san-pham/mo-hinh-co-ban-2/" target="_blank" rel="noopener">「基本型」頁</a>、<a href="https://lgcleanpro.vn/chi-20m%C2%B2-van-co-the-mo-cua-hang-giat-say-hien-dai/" target="_blank" rel="noopener">20m² 開店文章</a></li>
     <li><a href="https://vnreview.vn/threads/samsung-ra-mat-may-giat-say-cong-nghiep-o-viet-nam-nhap-truc-tiep-tu-han-quoc.87836/" target="_blank" rel="noopener">VnReview：Samsung 在越南推出商用洗烘機（2026/7）</a></li>
     <li><a href="https://news.samsung.com/vn/samsung-ra-mat-giai-phap-giat-say-cong-nghiep-dong-hanh-cung-doanh-nghiep-toi-uu-van-hanh-va-phat-trien-ben-vung" target="_blank" rel="noopener">Samsung 越南新聞稿：推出商用洗烘方案、三家代理（2026/7/17）</a></li>
@@ -324,21 +384,37 @@ footer ul{margin:0;padding-left:18px}
 const G='<span class="pill guess">推測</span>';
 const data=[
  {name:"SESA Coin Laundry",sub:"我們｜越南SESA",type:"開店統包",seg:"self",aud:["tob"],rel:0,relTxt:"自家",
-  brand:"AQUA 半商用洗烘二合一（17kg、27kg）",planShort:"創業包 4 億越南盾起；宣稱最快 6 個月回本",card:false},
+  brand:"AQUA 半商用洗烘二合一（17kg、27kg）",planShort:"小 AQUA 2.5 億／All-in-One 5 億越南盾；FB 宣稱最快 6 個月回本",card:false},
  {name:"Cleanpro 越南",sub:"LG Commercial 代理｜粉專：LG Cleanpro VietNam、Cleanpro Express Vietnam",type:"設備代理＋加盟／代營運",seg:"self",aud:["tob"],rel:3,relTxt:"最直接",
   brand:"LG Giant C Max、Titan Max",planShort:"合作經營分潤／自營／投資代營運，未見加盟金；約 2.5 億越南盾起",card:false},
  {name:"Đô Thị Laundry",sub:"Spinning International（Speed Queen／ALS）",type:"加盟品牌",seg:"self",aud:["tob"],rel:3,relTxt:"直接",
   brand:"Speed Queen",planShort:"三級加盟：6 億／15.9 億／29.9 億越南盾起；宣稱 22 個月回本",card:false},
  {name:"Koalala",sub:"Asiatech Holding",type:"加盟品牌",seg:"self",aud:["tob"],rel:3,relTxt:"直接",
-  brand:"Spinz（馬來西亞）",planShort:"加盟一條龍，約 3 億（20–30m²）／5 億（30–50m²）；宣稱利潤率 30–38%",card:false},
+  brand:"Spinz（馬來西亞）",planShort:"加盟一條龍，約 3 億（20–30m²）／5 億（30–50m²）；宣稱利潤率 30–38%、10–14 個月回本",card:false},
+ {name:"Áo Mây",sub:"多元洗護加盟連鎖",type:"加盟品牌",seg:"self",aud:["tob","toc"],rel:3,relTxt:"直接",
+  brand:"未公開（含 LG Styler）",planShort:"1.5 億／2.5 億／3.9 億越南盾起；不收加盟費、不抽成；宣稱 12–18 個月回本",card:false},
+ {name:"Cô Tiên Xanh",sub:"Cô Tiên Xanh Laundry｜2016 年起",type:"加盟品牌",seg:"self",aud:["tob"],rel:3,relTxt:"直接",
+  brand:"Electrolux",planShort:"BASIC／STANDARD／PREMIUM 三級，未標價；宣稱 30+ 家店",card:false},
+ {name:"CleanChem Vietnam",sub:"工業洗衣設備經銷",type:"OPL／工業機",seg:"opl",aud:["tob"],rel:3,relTxt:"直接（OPL）",
+  brand:"HOOP（中國）",planShort:"不做加盟；依專案賣設備，主推 15kg 洗烘組給民宿、小飯店",card:false},
  {name:"Hitech Group",sub:"河內青池｜工業洗衣機總倉",type:"OPL／工業機批發",seg:"opl",aud:["tob"],rel:3,relTxt:"直接（OPL）",
   brand:"未標品牌，疑似中國製 "+G,planShort:"不做加盟；1 億多越南盾買 4 台",card:false},
  {name:"LG WashTower",sub:"LG Vietnam 官方",type:"家用洗烘塔",seg:"home",aud:["toc"],rel:1,relTxt:"間接",
   brand:"LG WashTower WT1410NHE（洗 14kg／烘 10kg）",planShort:"無（家用零售促銷）",card:true,
   feats:["11 月 LG.com 獨家：6,300 多萬降到 3,000 多萬越南盾","價格只露一半，逼人私訊問價","米色木紋的生活感視覺"]},
  {name:"TiTi Laundry",sub:"胡志明市第 7 郡｜24 小時自助",type:"自助洗衣店",seg:"self",aud:["toc"],rel:2,relTxt:"客戶畫像",
-  brand:"Samsung 商用洗烘機（Samsung 新聞稿確認）",planShort:"無；Samsung 和 WW Việt Nam 的示範店",card:true,
-  feats:["洗 18kg＋烘 14kg 一組 55,000 越南盾","免費 Omo 洗衣精＋Downy 柔軟精","吉祥物＋節日檔期（11/11、雨天）","頁面連結 samsung.com 和科技媒體"]},
+  brand:"Samsung 商用洗烘機（洗 18kg／烘 14kg，Samsung 新聞稿確認）",planShort:"無；Samsung 和 WW Việt Nam 的示範店。考察：客戶自開自施工，含施工和機器約 3 億",card:true,
+  feats:["洗 18kg 55,000 越南盾／38 分鐘；烘 14kg 49,000 越南盾／45 分鐘","免費 Omo 洗衣精＋Downy 柔軟精","吉祥物＋節日檔期（11/11、雨天）","頁面連結 samsung.com 和科技媒體",
+   "<b>考察</b>：不是加盟，客戶自己開、自己施工；想開可介紹經銷商",
+   "<b>考察</b>：洗烘機報價 6,500 萬一組；電子支付系統 8,000 萬一組，不收國際信用卡",
+   "<b>考察</b>：位於一般住宅區（新興坊 79 路 75 號），考察時沒有客人"]},
+ {name:"OMP Omywash",sub:"OMP Alliance｜首站：Central Mall Satra Võ Văn Kiệt",type:"貨櫃式自助洗衣站",seg:"self",aud:["toc"],rel:2,relTxt:"模式競爭",
+  brand:"考察報告沒寫明；列在三星項下，報價 6,500 萬一組 "+G,planShort:"未見加盟方案；考察：含貨櫃、冷氣、招牌、電子支付約 5 億開到好",card:true,
+  feats:["約 15m² 可移動貨櫃，整合洗烘機、水電、消防、QR 支付，24 小時無人營運",
+   "洗 30,000 越南盾／45 分鐘；烘 30,000 越南盾／50 分鐘",
+   "自有會員系統（考察時 62 位會員），不收國際信用卡",
+   "首站在商場和公寓大樓下方、充電樁旁；目標客群學生、工人、租屋族、旅客，適合宿舍、工業區、閒置土地",
+   "廣告檔案庫查無刊登中廣告（2026/11/18）"]},
  {name:"Trạm Giặt",sub:"胡志明市新平郡｜9/26 開幕",type:"自助洗衣店",seg:"self",aud:["toc"],rel:2,relTxt:"客戶畫像",
   brand:"LG Giant C Max "+G+"（價目表寫洗 13kg／烘 10kg）",planShort:"無；可能是 Cleanpro 客戶",card:true,
   feats:["開幕 4 天洗烘費 100% 退還","會員集點、儲值回饋（10/10 送 21%）","學生分眾素材、棉被等大件品項"]},
