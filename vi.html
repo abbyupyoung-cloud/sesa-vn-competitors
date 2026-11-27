@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Bản đồ đối thủ giặt sấy Việt Nam</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+/* Layout: 總表看全貌 → 品牌陣營 → 加盟方案逐項比較（橫向對照表）→ 其他店家卡片 → 來源。 */
+:root{
+  --bg:#f3f6f7; --surface:#ffffff; --ink:#13262e; --muted:#5a6d75; --line:#d9e2e5;
+  --accent:#0b6e8a; --accent-soft:#e1f0f4;
+  --tob:#7a3fb0; --tob-soft:#f0e7f8;
+  --toc:#c2621a; --toc-soft:#fbeadc;
+  --guess:#8a7a12; --guess-soft:#f6f1cf;
+  --hot:#c0392b;
+  --font-body:"Noto Sans TC",system-ui,-apple-system,"Microsoft JhengHei",sans-serif;
+  --font-display:"Space Grotesk","Noto Sans TC",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e171b; --surface:#16232a; --ink:#e4eef1; --muted:#93a8b0; --line:#28393f;
+  --accent:#5cc0dc; --accent-soft:#16343e;
+  --tob:#c39af0; --tob-soft:#2c2140;
+  --toc:#f0a467; --toc-soft:#3a2617;
+  --guess:#e2cf5a; --guess-soft:#33301a; --hot:#ff8a7a; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0e171b; --surface:#16232a; --ink:#e4eef1; --muted:#93a8b0; --line:#28393f;
+  --accent:#5cc0dc; --accent-soft:#16343e;
+  --tob:#c39af0; --tob-soft:#2c2140;
+  --toc:#f0a467; --toc-soft:#3a2617;
+  --guess:#e2cf5a; --guess-soft:#33301a; --hot:#ff8a7a; color-scheme:dark;}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:44px}
+section{display:flex;flex-direction:column;gap:14px}
+h1,h2,h3{text-wrap:balance;margin:0;line-height:1.3}
+h1{font-family:var(--font-display);font-size:clamp(26px,4vw,36px);font-weight:900}
+h2{font-size:21px;font-weight:700;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+h2 small{font-size:13px;font-weight:400;color:var(--muted)}
+h3{font-size:17px;font-weight:700}
+p{margin:0}
+a{color:var(--accent)}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;font-family:var(--font-display)}
+header{display:flex;flex-direction:column;gap:10px}
+.lede{color:var(--muted);max-width:70ch}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;color:var(--muted);align-items:center}
+
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap;line-height:1.6}
+.tob{background:var(--tob-soft);color:var(--tob)}
+.toc{background:var(--toc-soft);color:var(--toc)}
+.guess{background:var(--guess-soft);color:var(--guess);font-weight:500}
+.seg{background:var(--accent-soft);color:var(--accent);font-weight:500}
+.src{font-size:11px;color:var(--muted);font-weight:500;border:1px solid var(--line);padding:0 6px;border-radius:4px;white-space:nowrap}
+
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;border-bottom:1px solid var(--line)}
+.filters span{font-size:13px;color:var(--muted);margin-right:4px}
+.filters button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:5px 14px;border-radius:999px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.filters button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.filters .sep{width:1px;height:20px;background:var(--line);margin:0 6px}
+
+.table-box{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+#overview{min-width:860px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-size:12px;letter-spacing:.06em;color:var(--muted);font-weight:700;background:var(--bg)}
+tbody tr:last-child td,tbody tr:last-child th{border-bottom:none}
+td.name b{display:block;font-size:15px}
+td.name small{color:var(--muted)}
+.rel{font-weight:700}
+.rel-3{color:var(--hot)}.rel-2{color:var(--toc)}.rel-1{color:var(--muted)}.rel-0{color:var(--accent)}
+
+/* 加盟方案對照表 */
+#plans{min-width:1560px;table-layout:fixed}
+@media (min-width:1240px){.plans-sec{width:calc(100vw - 64px);max-width:1880px;align-self:center}}
+.adlink{display:inline-block;margin-top:6px;font-size:12px;font-weight:500;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:1px 10px;background:var(--surface)}
+.adlink:hover{border-color:var(--accent)}
+.adlink:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ads{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.ad{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.ad b{font-size:15px}
+.ad span{font-size:13px;color:var(--muted)}
+.ad.off{background:transparent;border-style:dashed}
+.opl{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+#plans .us{background:var(--accent-soft)}
+#plans thead th.us{color:var(--accent)}
+#plans col.k{width:120px}
+#plans thead th{font-size:15px;letter-spacing:0;color:var(--ink);vertical-align:bottom}
+#plans thead th small{display:block;font-size:12px;font-weight:400;color:var(--muted)}
+#plans tbody th{font-size:13px;color:var(--muted);font-weight:700;background:var(--bg)}
+#plans td ul{margin:0;padding-left:18px}
+#plans td li+li{margin-top:4px}
+.num{font-family:var(--font-display);font-weight:700;font-variant-numeric:tabular-nums}
+.na{color:var(--muted)}
+.tier{display:flex;flex-direction:column;gap:2px}
+.tier+.tier{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+.tier b{font-size:14px}
+.tier span{font-size:13px;color:var(--muted)}
+.tier .per{color:var(--accent);font-weight:700;font-size:12.5px}
+#plans tbody th small{display:block;font-weight:400;font-size:11.5px;margin-top:4px;line-height:1.5}
+.note{font-size:13px;color:var(--muted)}
+
+.camps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.camp{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.camp .brand{font-family:var(--font-display);font-size:20px;font-weight:700}
+.chain{font-size:14px;color:var(--muted);display:flex;flex-direction:column;gap:2px}
+.chain b{color:var(--ink);font-weight:500}
+.camp p{font-size:14px}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+@media (max-width:420px){.cards{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card-head{display:flex;flex-direction:column;gap:6px}
+.card-head .tags{display:flex;flex-wrap:wrap;gap:6px}
+.card-head .sub{font-size:13px;color:var(--muted)}
+dl{margin:0;display:grid;grid-template-columns:80px 1fr;gap:8px 12px;font-size:14px}
+dt{color:var(--muted);font-weight:500}
+dd{margin:0;min-width:0}
+dd ul{margin:0;padding-left:18px}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:8px}
+footer ul{margin:0;padding-left:18px}
+.empty{color:var(--muted);font-size:14px;padding:12px}
+</style>
+
+<style>
+.lang{display:inline-flex;align-self:flex-start;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--surface)}
+.lang a{padding:5px 14px;font-size:13px;font-weight:700;color:var(--muted);text-decoration:none}
+.lang a[aria-current]{background:var(--accent);color:#fff}
+</style>
+<div class="wrap">
+<header>
+  <nav class="lang" aria-label="Ngôn ngữ / 語言"><a href="./" lang="zh-Hant">中文</a><a href="vi.html" lang="vi" aria-current="page">Tiếng Việt</a></nav>
+  <div class="eyebrow">Takurox SESA Việt Nam · Theo dõi đối thủ · 11/2026</div>
+  <h1>Bản đồ đối thủ ngành giặt sấy Việt Nam</h1>
+  <p class="lede">Tổng hợp 9 mẫu quảng cáo Facebook do đội kinh doanh cung cấp, bổ sung chi tiết gói nhượng quyền từ website chính thức và báo chí: điểm nổi bật, gói nhượng quyền/mở tiệm, thương hiệu máy và quảng cáo hiện nhắm đến to B hay to C.</p>
+  <div class="legend">
+    <span class="pill tob">to B</span>Tìm nhà đầu tư hoặc người mua thiết bị
+    <span class="pill toc">to C</span>Tìm khách hàng cá nhân
+    <span class="pill guess">Suy đoán</span>Cần xác minh
+    <span class="src">Website</span><span class="src">FB</span><span class="src">Báo chí</span><span class="src">Báo cáo</span><span class="src">Khảo sát</span>Nguồn dữ liệu (Báo cáo = Báo cáo phân tích đối thủ nội bộ 17/11/2026; Khảo sát = Báo cáo khảo sát thực tế TiTi, Omywash 11/2026)
+  </div>
+</header>
+
+<section class="plans-sec">
+  <h2>So sánh gói nhượng quyền <small>Giặt sấy tự phục vụ: SESA và 6 đối thủ theo từng hạng mục; màn hình rộng xem được toàn bộ, màn hình hẹp vuốt ngang</small></h2>
+  <div class="table-box">
+    <table id="plans">
+      <colgroup><col class="k"><col><col><col><col><col><col><col></colgroup>
+      <thead><tr>
+        <th></th>
+        <th class="us">SESA Coin Laundry<small>Chúng ta｜SESA Việt Nam</small></th>
+        <th>Đô Thị Laundry<small>Spinning International｜Speed Queen</small><a class="adlink" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=714966141695898" target="_blank" rel="noopener">Xem quảng cáo đang chạy ↗</a></th>
+        <th>Koalala<small>Asiatech Holding｜Spinz</small><a class="adlink" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=610503928812029" target="_blank" rel="noopener">Xem quảng cáo đang chạy ↗</a></th>
+        <th>Cleanpro<small>Đại lý LG Commercial</small><a class="adlink" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=590463330818996" target="_blank" rel="noopener">Xem quảng cáo đang chạy ↗</a></th>
+        <th>Áo Mây<small>Nhượng quyền đa dịch vụ｜Giặt sấy＋giặt khô＋giặt giày</small><a class="adlink" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=1801578180147717" target="_blank" rel="noopener">Xem quảng cáo đang chạy ↗</a></th>
+        <th>Cô Tiên Xanh<small>Cô Tiên Xanh Laundry｜Electrolux</small><a class="adlink" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=107491430818391" target="_blank" rel="noopener">Xem quảng cáo đang chạy ↗</a></th>
+        <th>OMP Omywash<small>OMP Alliance｜Trạm giặt container 15m²</small><a class="adlink" href="https://www.facebook.com/Omywash" target="_blank" rel="noopener">Fanpage FB ↗</a></th>
+      </tr></thead>
+      <tbody>
+        <tr><th>Hình thức hợp tác</th>
+          <td class="us">Trọn gói mở tiệm, đơn vị vận hành là CleanChain <span class="src">Website</span><p class="note">Quy trình 6 bước: Tư vấn → Khảo sát mặt bằng → Thiết kế mặt bằng → Ký hợp đồng → Thi công lắp đặt → Khai trương</p></td>
+          <td>Thương hiệu nhượng quyền, bảng hiệu thống nhất <span class="src">Website</span></td>
+          <td>Thương hiệu nhượng quyền, nhận diện và nội thất thống nhất <span class="src">Website</span></td>
+          <td>Website nêu 3 mô hình hợp tác <span class="src">Website</span><ul><li>Hợp tác kinh doanh: chủ nhà góp mặt bằng (tối thiểu 5 năm), Cleanpro góp thiết bị, hệ thống quản lý và nhân sự, chia lợi nhuận theo hợp đồng</li><li>Tự vận hành: mô hình truyền thống hoặc tự động hoàn toàn</li><li>Gói đầu tư: nhà đầu tư góp vốn, Cleanpro vận hành thay, xem doanh thu trên điện thoại</li></ul></td>
+          <td>Chuỗi nhượng quyền, tiệm đa dịch vụ (giặt sấy, giặt khô, giặt giày, giao nhận tận nơi) <span class="src">FB</span><p class="note">Quảng cáo nêu kỹ thuật và kinh nghiệm vận hành đến từ hệ thống xưởng giặt Latusa</p></td>
+          <td>Thương hiệu nhượng quyền, 3 gói BASIC／STANDARD／PREMIUM <span class="src">Website</span><p class="note">PREMIUM có độc quyền khu vực</p></td>
+          <td>Trạm giặt sấy tự phục vụ dạng container di động do OMP Alliance ra mắt, khoảng 15m², hoạt động 24/7 không người trực <span class="src">Khảo sát</span><p class="note">Chưa thấy gói nhượng quyền</p></td>
+        </tr>
+        <tr><th>Thương hiệu máy</th>
+          <td class="us">AQUA (Nhật Bản), bán công nghiệp <span class="src">Website</span><p class="note">Gói khởi nghiệp mới nhất: 3 máy giặt sấy 2 trong 1 AQUA. Website còn có cấu hình 3 máy 17kg＋1 máy 27kg</p></td>
+          <td>Speed Queen (ALS) <span class="src">Website</span></td>
+          <td>Spinz (Malaysia) <span class="src">Website</span><p class="note">Bài viết trên website (6/2024): máy giặt sấy thương mại 10–100kg＋hệ thống quản lý IoT. Công ty mẹ Asiatech từ 7/2026 cũng là nhà phân phối máy giặt thương mại Samsung</p></td>
+          <td>LG Giant C Max (13／10,2kg), Titan Max (17／14kg) <span class="src">Website</span><p class="note">Website còn có dự án dùng máy Dexter (Mỹ)</p></td>
+          <td>Website không nêu thương hiệu máy giặt sấy; gói Chạm Mây có LG Styler <span class="src">Website</span></td>
+          <td>Electrolux <span class="src">Website</span></td>
+          <td>Báo cáo khảo sát không ghi rõ; được xếp vào nhóm Samsung <span class="pill guess">Suy đoán</span> <span class="src">Khảo sát</span></td>
+        </tr>
+        <tr><th>Gói đầu tư<small>Chữ xanh = bình quân mỗi máy: giá gói ÷ số máy giặt sấy (1 bộ = 1 giặt＋1 sấy), đã gồm thi công…, không phải giá máy</small></th>
+          <td class="us"><div class="tier"><b>Gói khởi nghiệp｜từ <span class="num">310 triệu</span> (mới nhất)</b><span>15m², 3 máy giặt sấy 2 trong 1 AQUA; ưu đãi Tết đến 05/02/2027</span><span class="per">Khoảng 103 triệu/máy</span></div><div class="tier"><b>AQUA nhỏ｜<span class="num">250 triệu</span></b><span>3 máy AQUA nhỏ</span><span class="per">Khoảng 83 triệu/máy</span></div><div class="tier"><b>All-in-One｜<span class="num">500 triệu</span></b><span>1 máy AQUA All-in-One＋2 máy AQUA nhỏ</span><span class="per">Bình quân khoảng 167 triệu/máy</span></div><span class="src">Website</span> <span class="src">Báo cáo</span><p class="note">Gói khởi nghiệp là gói mới nhất trên website; AQUA nhỏ và All-in-One là báo giá trong báo cáo nội bộ. Quảng cáo FB trước đây ghi «gói khởi nghiệp từ 400 triệu»</p></td>
+          <td>
+            <div class="tier"><b>Express｜từ <span class="num">600 triệu</span></b><span>30–50m², 2 bộ máy giặt／sấy</span><span class="per">Khoảng 150 triệu/máy (4 máy)</span></div>
+            <div class="tier"><b>Standard｜từ <span class="num">1,59 tỷ</span> (gói chủ lực)</b><span>50–80m², tối thiểu 5 bộ (4 máy 14kg＋1 máy 23kg)</span><span class="per">Khoảng 159 triệu/máy (10 máy)</span></div>
+            <div class="tier"><b>Flagship｜từ <span class="num">2,99 tỷ</span></b><span>Từ 80m², 7 máy (5 máy 14kg＋2 máy 23kg), kết hợp mô hình cà phê</span><span class="per">Chưa rõ cách tính số máy, không ước tính</span></div>
+            <span class="src">Website</span></td>
+          <td>
+            <div class="tier"><b>Tiệm nhỏ｜khoảng <span class="num">300 triệu</span></b><span>20–30m², 4–6 máy giặt sấy</span><span class="per">Khoảng 50–75 triệu/máy</span></div>
+            <div class="tier"><b>Tiệm vừa｜khoảng <span class="num">500 triệu</span></b><span>30–50m², 6–10 máy giặt sấy</span><span class="per">Khoảng 50–83 triệu/máy</span></div>
+            <span class="src">Website</span> <span class="src">Báo cáo</span><p class="note">Số liệu tham khảo từ bài viết trên website (6/2024); trang nhượng quyền ghi mặt bằng 30–50m². Có phương án tài chính linh hoạt. Báo cáo: gói tiêu chuẩn 2 giặt＋2 sấy, ngành ước tính 350–600 triệu (không phải báo giá)</p></td>
+          <td>
+            <div class="tier"><b>Khởi điểm｜khoảng <span class="num">250 triệu</span></b><span>20m², 3–4 bộ máy chồng (bài viết trên website 07/9/2026)</span><span class="per">Khoảng 31–42 triệu/máy (6–8 máy)</span></div>
+            <div class="tier"><b>Mô hình cơ bản｜<span class="num">300–350 triệu</span></b><span>3 bộ Giant C Max, tối thiểu 18–25m²</span><span class="per">Khoảng 50–58 triệu/máy (6 máy)</span></div>
+            <div class="tier"><b>Tự vận hành truyền thống｜khoảng <span class="num">450 triệu</span> (tham khảo)</b><span>3 bộ Giant C Max＋1 máy Titan Max</span><span class="per">Khoảng 56 triệu/máy (báo cáo tính 8 máy)</span></div>
+            <div class="tier"><b>Tự vận hành tự động｜chưa công bố giá</b><span>5 bộ Giant C Max＋1 máy Titan Max, tự động châm hóa chất, hệ thống thu tiền</span><span class="per">Chưa công bố giá, không ước tính được</span></div>
+            <span class="src">FB</span> <span class="src">Website</span> <span class="src">Báo cáo</span></td>
+          <td>
+            <div class="tier"><b>Khởi Nguồn｜từ <span class="num">150 triệu</span></b><span>3 bộ giặt sấy 8kg＋1 máy giặt giày</span><span class="per">Khoảng 25 triệu/máy (6 máy, không tính máy giặt giày)</span></div>
+            <div class="tier"><b>Trải Sáng｜từ <span class="num">250 triệu</span></b><span>1 bộ 14kg＋3 bộ giặt sấy tiêu chuẩn, máy giặt/sấy giày, bàn ủi hơi nước</span><span class="per">Khoảng 31 triệu/máy (8 máy)</span></div>
+            <div class="tier"><b>Chạm Mây｜từ <span class="num">390 triệu</span></b><span>Thêm LG Styler, bàn tẩy điểm, bàn ủi hút</span><span class="per">Khoảng 65 triệu/máy (báo cáo tính 6 máy＋Styler)</span></div>
+            <span class="src">Website</span><p class="note">Website cập nhật 06/11/2026; chưa gồm vận chuyển, cải tạo, thuế, đặt cọc, vốn lưu động</p></td>
+          <td>
+            <div class="tier"><b>BASIC｜chưa công bố giá</b><span>3 máy giặt 10kg＋3 máy sấy 8kg</span></div>
+            <div class="tier"><b>STANDARD｜chưa công bố giá</b><span>4 máy giặt 10kg＋4 máy sấy 8kg, kèm thiết bị giặt giày, hấp ủi, app quản lý</span></div>
+            <div class="tier"><b>PREMIUM｜chưa công bố giá</b><span>4 giặt＋4 sấy công suất lớn, thêm tủ UV giày, tủ hấp quần áo, giao nhận tận nơi</span><span class="per">Chưa công bố giá, không ước tính được</span></div>
+            <span class="src">Website</span><p class="note">Giá phải nhắn tin để hỏi</p></td>
+          <td><div class="tier"><b>1 trạm｜<span class="num">khoảng 500 triệu</span></b><span>Gồm container, máy lạnh, bảng hiệu, thanh toán điện tử, trọn gói đến khi hoạt động</span><span class="per">Chưa rõ số máy, không ước tính được</span></div><div class="tier"><b>Báo giá máy｜<span class="num">65 triệu</span>/bộ</b><span>1 giặt＋1 sấy</span><span class="per">Giá máy khoảng 32,5 triệu/máy</span></div><span class="src">Khảo sát</span> <span class="src">Báo cáo</span><p class="note">Báo cáo: trạm giặt sấy Omywash báo giá 700 triệu–1 tỷ</p></td>
+        </tr>
+        <tr><th>Hỗ trợ marketing</th>
+          <td class="us"><ul><li>Sự kiện khai trương</li><li>Kế hoạch tìm khách hàng</li></ul><span class="src">Website</span><p class="note">Không nêu thời gian hỗ trợ</p></td>
+          <td><ul><li>Marketing khai trương (cả 3 gói)</li><li>Standard, Flagship: chương trình marketing 5 năm</li></ul><span class="src">Website</span></td>
+          <td><ul><li>Kế hoạch khai trương và khuyến mãi</li><li>Khuyến mãi sau khi vận hành để tăng doanh thu</li><li>Tổng công ty chạy marketing online, chuyển khách cho cửa hàng nhượng quyền</li><li>Định hướng truyền thông đa kênh, mở rộng khách hàng địa phương</li><li>Gói marketing trị giá 60 triệu đồng trong 6 tháng đầu＋đào tạo vận hành</li></ul><span class="src">Website</span> <span class="src">FB</span> <span class="src">Báo cáo</span></td>
+          <td><ul><li>Mô hình truyền thống: gồm phí marketing khu vực bán kính 3km</li><li>Mô hình tự động: gồm phí marketing 3 tháng đầu</li></ul><span class="src">Website</span></td>
+          <td><ul><li>Hỗ trợ xây dựng chiến lược marketing từ khi khai trương</li></ul><span class="src">FB</span><p class="note">Website: hạng mục marketing khác nhau theo gói, không ghi chi tiết</p></td>
+          <td><ul><li>BASIC: marketing tuần khai trương</li><li>STANDARD: Google Maps＋quảng cáo FB tuần đầu＋10 bài truyền thông</li><li>PREMIUM: Google＋1 tháng quảng cáo＋30 bài truyền thông＋sự kiện khai trương</li></ul><span class="src">Website</span></td>
+          <td class="na">Chưa công bố</td>
+        </tr>
+        <tr><th>Phí nhượng quyền／chia doanh thu</th>
+          <td class="us"><b>0</b> (phí nhượng quyền 0 đồng, không chia doanh thu) <span class="src">Website</span></td>
+          <td>Website không ghi; hội thảo 28/8 từng ưu đãi «giảm đến 50% phí nhượng quyền» <span class="src">FB</span></td>
+          <td>Website có trang «Chính sách nhượng quyền» nhưng không công bố số tiền</td>
+          <td>Chưa thấy phí nhượng quyền; mô hình hợp tác kinh doanh chia lợi nhuận theo hợp đồng <span class="src">Website</span></td>
+          <td>«3 không»: không phí nhượng quyền định kỳ, không phí đào tạo, không chia doanh thu; quảng cáo 16/11 ghi không thu phí nhượng quyền <span class="src">FB</span><p class="note">Báo cáo: bài viết cũ từng ghi phí nhượng quyền một lần＋bảo hộ khu vực, mua lại thiết bị khi ngừng kinh doanh</p></td>
+          <td class="na">Website không ghi</td>
+          <td class="na">Chưa công bố</td>
+        </tr>
+        <tr><th>Dịch vụ bao gồm</th>
+          <td class="us"><ul><li>Khảo sát mặt bằng, thiết kế 2D／3D, tư vấn cấu hình thiết bị</li><li>Lắp đặt trọn gói</li><li>Hướng dẫn cải tạo, lắp đặt thiết bị, đào tạo vận hành</li><li>Hệ thống IoT: trạng thái máy, cài đặt khuyến mãi, báo cáo doanh thu; khách xem được máy trống và thời gian còn lại</li><li>Thanh toán điện tử: Momo, VietQR, mPOS, ZaloPay…</li><li>Hoạt động 24/7, không cần nhân viên</li></ul><span class="src">Website</span></td>
+          <td><ul><li>Thi công trọn gói, đào tạo vận hành 2 tuần</li><li>Từ Standard: hệ thống chấm công và vận hành</li><li>Đồng hành vận hành: Standard 12 tháng, Flagship 36 tháng</li><li>Khảo sát mặt bằng miễn phí 5 ngày</li></ul></td>
+          <td><ul><li>Chọn địa điểm, thiết kế 2D/3D, hoàn thiện khoảng 20 ngày</li><li>Đào tạo 1 kèm 1</li><li>Phần mềm quản lý từ xa; thanh toán QR, xu, thẻ tín dụng, tiền mặt</li><li>Hỗ trợ kỹ thuật trọn đời</li></ul></td>
+          <td><ul><li>Tìm mặt bằng, khảo sát</li><li>Thiết kế 3D miễn phí, thi công, điện nước, thoát khí</li><li>Lắp đặt, vận hành, hỗ trợ sau khai trương</li><li>CleanproPay (QR＋thẻ tín dụng quốc tế)</li></ul><span class="src">Website</span> <span class="src">FB</span></td>
+          <td><ul><li>Chọn địa điểm, thiết kế nhận diện thương hiệu</li><li>Lắp đặt máy, chuyển giao kỹ thuật</li><li>Đào tạo nhân sự</li></ul><span class="src">FB</span></td>
+          <td><ul><li>Chọn địa điểm, thiết kế, lắp đặt</li><li>Đào tạo nhân viên</li><li>Quản lý từ xa, xem doanh thu theo thời gian thực (PREMIUM thêm camera)</li><li>Hỗ trợ vận hành trọn đời; khai trương trong 20–30 ngày</li></ul><span class="src">Website</span> <span class="src">FB</span></td>
+          <td><ul><li>Container tích hợp máy giặt sấy, điện nước, PCCC, thanh toán QR</li><li>Quản lý doanh thu và vận hành từ xa</li><li>Hệ thống hội viên riêng (62 hội viên lúc khảo sát)</li><li>Không nhận thẻ tín dụng quốc tế</li></ul><span class="src">Khảo sát</span></td>
+        </tr>
+        <tr><th>Bảo hành</th>
+          <td class="us">Bảo hành toàn máy 1 năm＋dịch vụ bảo dưỡng <span class="src">Website</span></td>
+          <td class="na">Website không ghi</td>
+          <td>Hỗ trợ kỹ thuật trọn đời (FB)</td>
+          <td>Theo hợp đồng có 3 gói bảo hành bảo dưỡng 3 năm／2 năm／1 năm <span class="src">Website</span><p class="note">Bài đăng FB ghi bảo hành 24 tháng＋bảo dưỡng trọn đời</p></td>
+          <td class="na">Website không ghi, đề nghị xác nhận trong hợp đồng</td>
+          <td class="na">Website không ghi</td>
+          <td class="na">Chưa công bố</td>
+        </tr>
+        <tr><th>Hoàn vốn／lợi nhuận công bố</th>
+          <td class="us"><b>Hoàn vốn dự kiến 6 tháng*</b> <span class="src">Website</span><p class="note">Website ghi chú «*» là số liệu dự kiến</p></td>
+          <td><b>Hoàn vốn trung bình từ 22 tháng</b> <span class="src">Website</span></td>
+          <td><b>Biên lợi nhuận khoảng 30–38%</b> <span class="src">FB</span><p class="note">Báo cáo: bài viết ROI ghi hoàn vốn 10–14 tháng, bài khác ghi 18–24 tháng</p></td>
+          <td class="na">Chưa công bố</td>
+          <td><b>Hoàn vốn 12–18 tháng</b> <span class="src">FB</span><p class="note">Báo cáo: bài viết cũ ghi theo gói 18–20／15–18／12–15 tháng</p></td>
+          <td class="na">Chưa công bố (chỉ ghi lợi nhuận ổn định)</td>
+          <td class="na">Chưa công bố</td>
+        </tr>
+        <tr><th>Quy mô cửa hàng</th>
+          <td class="us">300+ cửa hàng toàn cầu, 7 quốc gia (Mỹ, Đài Loan, Thái Lan, Việt Nam, Indonesia, Philippines, Malaysia), 40+ năm kinh nghiệm <span class="src">Website</span></td>
+          <td>7 cửa hàng tại TP.HCM, dự kiến mở rộng ra Đà Nẵng <span class="src">Website</span></td>
+          <td>Cửa hàng tại 7 tỉnh thành (Hà Nội, TP.HCM, Bắc Ninh, Đồng Nai, Quảng Ninh, Sa Pa, Thanh Hóa); FB ghi tập đoàn có 1.000+ điểm giặt<p class="note">Báo cáo: mở cửa hàng đầu tiên năm 2024, website từng liệt kê 14 địa chỉ, số cửa hàng đang hoạt động chưa rõ</p></td>
+          <td>Tổng số cửa hàng chưa công bố; thành lập năm 2017 <span class="src">Báo cáo</span><p class="note">Dự án công khai: The Wash Hub, Hà Nội (9 Hàng Chĩnh, 2025)</p></td>
+          <td>Chưa công bố; quảng cáo ghi đang mở rộng phía Nam <span class="src">FB</span><p class="note">Fanpage cửa hàng Tân Phú (TP.HCM), Vinhomes Grand Park, Đà Nẵng cũng chạy quảng cáo to C</p></td>
+          <td>Từ năm 2016; quảng cáo ghi 30+ cửa hàng <span class="src">FB</span><p class="note">Website ghi 10+ cửa hàng nhượng quyền, 20+ tỉnh thành, danh sách 22 chi nhánh (chủ yếu ở Đồng Tháp, Vĩnh Long, Cần Thơ, TP.HCM)</p></td>
+          <td>Xác nhận công khai 1 điểm thí điểm: Central Mall Satra Võ Văn Kiệt (dưới trung tâm thương mại và chung cư) <span class="src">Khảo sát</span><p class="note">Mục tiêu mở rộng ra các đô thị lớn, số điểm đang hoạt động chưa xác nhận</p></td>
+        </tr>
+        <tr><th>Cách thu hút nhà đầu tư</th>
+          <td class="us">«Mặt bằng nhỏ, cơ hội kinh doanh lớn»: nhấn mạnh 310 triệu, mặt bằng nhỏ 15m², hoàn vốn 6 tháng＋phí nhượng quyền 0 đồng; ưu đãi Tết có thời hạn <span class="src">Website</span><p class="note">FB trước đây công khai mức 400 triệu</p></td>
+          <td>Hội thảo tại khách sạn 5 sao, hãng sản xuất trực tiếp tham dự, ưu đãi ký hợp đồng trong ngày</td>
+          <td>Bảo chứng bằng quy mô＋thu nhập thụ động, tặng bảng tính hoàn vốn miễn phí</td>
+          <td>Mồi ngân sách thấp (20m², 250 triệu)＋nội dung giáo dục, 2 fanpage tách đối tượng; cùng LG Hàn Quốc tham gia triển lãm VietFranchise 2026 (29–31/10)</td>
+          <td>Không chia doanh thu «3 không»＋xu hướng đầu tư 2026, không kinh nghiệm cũng mở được tiệm; để lại thông tin nhận bảng tính đầu tư／doanh thu／hoàn vốn</td>
+          <td>Bảo chứng 10 năm kinh nghiệm＋30 cửa hàng, đồng hành từ A đến Z; nhắn tin để nhận gói và chi phí</td>
+          <td>Ra mắt qua cơ quan báo chí chính thống; nhấn mạnh có thể đặt tại ký túc xá, khu công nghiệp, bệnh viện, khu dân cư và đất trống chờ khai thác <span class="src">Khảo sát</span><p class="note">Thư viện quảng cáo không có quảng cáo đang chạy (18/11/2026)</p></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Đơn vị: đồng Việt Nam. Website Đô Thị ghi «1,590 tỷ», «2,990 tỷ», theo cách viết thông thường là 1,59 tỷ và 2,99 tỷ.</p>
+</section>
+
+<nav class="filters" aria-label="Lọc bảng tổng hợp">
+  <span>Đối tượng quảng cáo</span>
+  <button type="button" id="f-all" data-k="aud" data-v="all" aria-pressed="true">Tất cả</button>
+  <button type="button" id="f-tob" data-k="aud" data-v="tob" aria-pressed="false">to B</button>
+  <button type="button" id="f-toc" data-k="aud" data-v="toc" aria-pressed="false">to C</button>
+  <i class="sep" aria-hidden="true"></i>
+  <span>Thị trường</span>
+  <button type="button" id="s-all" data-k="seg" data-v="all" aria-pressed="true">Tất cả</button>
+  <button type="button" id="s-self" data-k="seg" data-v="self" aria-pressed="false">Tự phục vụ／tiệm giặt</button>
+  <button type="button" id="s-opl" data-k="seg" data-v="opl" aria-pressed="false">OPL／công nghiệp</button>
+  <button type="button" id="s-home" data-k="seg" data-v="home" aria-pressed="false">Gia dụng</button>
+</nav>
+
+<section>
+  <h2>Bảng tổng hợp <small>Dùng các nút phía trên để lọc</small></h2>
+  <div class="table-box">
+    <table id="overview">
+      <thead><tr><th>Thương hiệu／cửa hàng</th><th>Loại hình</th><th>Thương hiệu máy</th><th>Gói nhượng quyền／mở tiệm</th><th>Đối tượng quảng cáo</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Các phe thương hiệu <small>Thương hiệu thiết bị → kênh phân phối tại Việt Nam → cửa hàng</small></h2>
+  <div class="camps">
+    <div class="camp" style="background:var(--accent-soft);border-color:transparent"><span class="brand" style="color:var(--accent)">AQUA (chúng ta)</span>
+      <div class="chain"><span>Gói mở tiệm: <b>SESA Coin Laundry (CleanChain／Takurox)</b></span><span>Máy: <b>AQUA (Nhật Bản) bán công nghiệp</b></span></div>
+      <p>Gói khởi nghiệp mới nhất từ 310 triệu đồng (15m², 3 máy giặt sấy 2 trong 1 AQUA, hoàn vốn dự kiến 6 tháng, phí nhượng quyền 0 đồng); báo giá nội bộ còn có AQUA nhỏ 250 triệu, All-in-One 500 triệu; bảo hành toàn máy 1 năm. 300+ cửa hàng toàn cầu, 7 quốc gia.</p></div>
+    <div class="camp"><span class="brand">LG</span>
+      <div class="chain"><span>Kênh phân phối: <b>Cleanpro Việt Nam (tự giới thiệu là đại lý độc quyền LG Commercial)</b></span><span>Cửa hàng: <b>Trạm Giặt, Mon Na Care</b> <span class="pill guess">Suy đoán</span></span></div>
+      <p>3 mô hình: hợp tác chia lợi nhuận, tự vận hành, đầu tư và Cleanpro vận hành thay; chưa thấy phí nhượng quyền. Nhắm cả chủ tiệm cũ cần thay máy và nhà đầu tư mới.</p></div>
+    <div class="camp"><span class="brand">Speed Queen</span>
+      <div class="chain"><span>Tập đoàn: <b>Alliance Laundry Systems (Mỹ)</b></span><span>Kênh phân phối: <b>Spinning International</b></span><span>Thương hiệu nhượng quyền: <b>Đô Thị Laundry (7 cửa hàng tại TP.HCM)</b></span></div>
+      <p>3 gói nhượng quyền, từ 600 triệu đồng, công bố hoàn vốn trung bình 22 tháng.</p></div>
+    <div class="camp"><span class="brand">Samsung</span>
+      <div class="chain"><span>Nhà phân phối: <b>Asiatech Holding, WW Việt Nam, Wash Friends Vina</b> (Samsung Việt Nam công bố 17/7/2026)</span><span>Thương hiệu nhượng quyền: <b>Koalala</b> (công ty con của Asiatech; website giới thiệu máy Spinz)</span><span>Cửa hàng mẫu: <b>TiTi Laundry</b> (WW Việt Nam hỗ trợ mở; WW đặt mục tiêu 7 điểm)</span><span>Trạm giặt container: <b>OMP Omywash</b> (OMP Alliance) <span class="src">Khảo sát</span> <span class="pill guess">Suy đoán</span></span></div>
+      <p>Thông cáo Samsung Việt Nam 21/9/2026: TiTi Laundry là cửa hàng đầu tiên hợp tác với WW Việt Nam, dùng toàn bộ máy giặt sấy thương mại Samsung (giặt 18kg, sấy 14kg), định vị là cửa hàng mẫu cho nhà đầu tư tham quan.</p><p>Khảo sát thực tế: TiTi không phải cửa hàng nhượng quyền, khách hàng tự mở, tự thi công, máy và thi công khoảng 300 triệu; báo giá máy giặt sấy Samsung 65 triệu/bộ. Omywash cũng được báo cáo khảo sát xếp vào nhóm Samsung, báo giá cũng 65 triệu/bộ, nhưng không ghi rõ thương hiệu máy.</p></div>
+    <div class="camp"><span class="brand">Không ghi thương hiệu</span>
+      <div class="chain"><span>Bán sỉ OPL: <b>Hitech Group (Hà Nội)</b></span><span>Máy: <b>nghi là hàng Trung Quốc</b> <span class="pill guess">Suy đoán</span></span></div>
+      <p>Không nhượng quyền, bán trực tiếp máy công nghiệp, nhấn mạnh giá rẻ. Không tìm thấy website.</p></div>
+  </div>
+</section>
+
+
+<section>
+  <h2>OPL／máy giặt công nghiệp <small>Thị trường khác, không nhượng quyền</small></h2>
+  <div class="opl">
+    <div class="card-head"><div class="tags"><span class="pill tob">to B</span><span class="pill seg">OPL／công nghiệp</span></div>
+      <h3>Tổng kho máy giặt công nghiệp Hitech Group</h3><span class="sub">Thanh Trì, Hà Nội｜Nhập khẩu và phân phối máy giặt công nghiệp</span></div>
+    <dl>
+      <dt>Thương hiệu máy</dt><dd>Không ghi thương hiệu, tự nhận hàng nhập khẩu chính hãng <span class="pill guess">Nghi hàng Trung Quốc</span></dd>
+      <dt>Gói</dt><dd>Không nhượng quyền, bán thiết bị trực tiếp. «Hơn 100 triệu đồng mua trọn bộ 4 máy», từ máy giặt công nghiệp 30kg</dd>
+      <dt>Khách hàng</dt><dd>Xưởng giặt nhỏ, tiệm giặt khô, homestay, khách sạn nhỏ</dd>
+      <dt>Đặc điểm</dt><dd><ul><li>Định vị «tổng kho»: giá rẻ, có hàng sẵn</li><li>Fanpage nhỏ (386 người theo dõi), đại lý mang tính địa phương</li><li>Không tìm thấy website; bài đăng không nhắc bảo hành và hậu mãi</li></ul></dd>
+    </dl>
+    <a class="adlink" style="align-self:flex-start" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=754997597691008" target="_blank" rel="noopener">Xem quảng cáo đang chạy ↗</a>
+  </div>
+  <div class="opl" style="margin-top:16px">
+    <div class="card-head"><div class="tags"><span class="pill tob">to B</span><span class="pill seg">OPL／công nghiệp</span></div>
+      <h3>CleanChem Vietnam</h3><span class="sub">Phân phối thiết bị giặt công nghiệp｜Thành lập năm 2012</span></div>
+    <dl>
+      <dt>Thương hiệu máy</dt><dd>HOOP (Trung Quốc)</dd>
+      <dt>Gói</dt><dd>Không nhượng quyền, bán thiết bị theo dự án; chủ lực bộ giặt sấy HOOP 15kg</dd>
+      <dt>Khách hàng</dt><dd>Tiệm giặt, xưởng giặt, khách sạn, <b>homestay</b>, khách sạn nhỏ</dd>
+      <dt>Đặc điểm</dt><dd><ul><li>Chạy quảng cáo từ 29/10, 4/11, nhấn mạnh «nâng cấp xưởng giặt» và «homestay, khách sạn nhỏ tự giặt»</li><li>Báo cáo: 12/11/2026 công bố bàn giao xưởng giặt công suất 3 tấn/ngày</li></ul></dd>
+    </dl>
+    <a class="adlink" style="align-self:flex-start" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=748863864986368" target="_blank" rel="noopener">Xem quảng cáo đang chạy ↗</a>
+  </div>
+</section>
+
+<section>
+  <h2>Thư viện quảng cáo <small>Việt Nam, đang chạy, sắp xếp theo lượt hiển thị</small></h2>
+  <div class="ads">
+    <a class="ad" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=590463330818996" target="_blank" rel="noopener"><b>LG Cleanpro VietNam ↗</b><span>Cleanpro｜phe LG｜giặt sấy tự phục vụ</span></a>
+    <a class="ad" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=714966141695898" target="_blank" rel="noopener"><b>Tiệm Tự Giặt Sấy Đô Thị ↗</b><span>Đô Thị｜phe Speed Queen｜giặt sấy tự phục vụ</span></a>
+    <a class="ad" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=610503928812029" target="_blank" rel="noopener"><b>Nhượng Quyền Giặt Sấy Tự Động Koalala ↗</b><span>Fanpage tuyển nhượng quyền Koalala｜giặt sấy tự phục vụ</span></a>
+    <a class="ad" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=474965122372127" target="_blank" rel="noopener"><b>Koalala Terra An Hưng ↗</b><span>Fanpage cửa hàng Koalala (Hà Nội)｜giặt sấy tự phục vụ</span></a>
+    <a class="ad" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=754997597691008" target="_blank" rel="noopener"><b>Tổng Kho Máy Giặt Công Nghiệp Hitech Group ↗</b><span>Hitech Group｜OPL／máy công nghiệp</span></a>
+    <a class="ad" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=1801578180147717" target="_blank" rel="noopener"><b>Áo Mây - Chuỗi Nhượng Quyền Giặt Sấy ↗</b><span>Fanpage tuyển nhượng quyền Áo Mây｜giặt sấy tự phục vụ</span></a>
+    <a class="ad" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=107491430818391" target="_blank" rel="noopener"><b>Giặt Sấy CÔ TIÊN XANH ↗</b><span>Cô Tiên Xanh｜Electrolux｜giặt sấy tự phục vụ</span></a>
+    <a class="ad" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=VN&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[direction]=desc&amp;sort_data[mode]=total_impressions&amp;view_all_page_id=748863864986368" target="_blank" rel="noopener"><b>CleanChem Vietnam ↗</b><span>CleanChem｜HOOP｜OPL／máy công nghiệp</span></a>
+    <div class="ad off"><b>Máy giặt sấy công nghiệp Samsung Việt Nam</b><span>Hiện không chạy quảng cáo</span></div>
+    <div class="ad off"><b>Nhượng Quyền Giặt Sấy Wash Friends Hàn Quốc</b><span>Hiện không chạy quảng cáo (Wash Friends cũng là nhà phân phối Samsung)</span></div>
+  </div>
+  <p class="note">Cần đăng nhập Facebook để xem đầy đủ nội dung thư viện quảng cáo.</p>
+</section>
+
+<section>
+  <h2>Cửa hàng khác <small>Không có gói nhượng quyền</small></h2>
+  <div class="cards" id="cards"></div>
+</section>
+
+<footer>
+  <span>Nguồn: ảnh chụp bài đăng Facebook do đội kinh doanh cung cấp (7–11/2026) và các trang web sau (truy cập 17/11/2026):</span>
+  <ul>
+    <li><a href="https://www.cleanchain-global.com/vn/join-us" target="_blank" rel="noopener">Trang nhượng quyền SESA／CleanChain Việt Nam</a></li>
+    <li><a href="https://dothilaundry.com.vn/" target="_blank" rel="noopener">Website Đô Thị Laundry</a></li>
+    <li><a href="https://koalala.vn/" target="_blank" rel="noopener">Website Koalala</a>, <a href="https://koalala.vn/gioi-thieu/" target="_blank" rel="noopener">giới thiệu công ty</a>, <a href="https://koalala.vn/tu-van-setup-cua-hang-tu-giat-tu-say-koalala/" target="_blank" rel="noopener">bài tư vấn mở tiệm (6/2024)</a>, <a href="https://koalala.vn/gioi-thieu-he-thong-thong-may-giat-say-tu-dong-spinz/" target="_blank" rel="noopener">giới thiệu máy Spinz (6/2024)</a></li>
+    <li><a href="https://aomay.vn/nhuong-quyen-giat-say/" target="_blank" rel="noopener">Trang nhượng quyền Áo Mây</a></li>
+    <li><a href="https://cotienxanhlaundry.com/nhuong-quyen" target="_blank" rel="noopener">Trang nhượng quyền Cô Tiên Xanh</a> (<a href="https://cotienxanhlaundry.com/basic-khoinghiep" target="_blank" rel="noopener">BASIC</a>, <a href="https://cotienxanhlaundry.com/standard-tieuchuan" target="_blank" rel="noopener">STANDARD</a>, <a href="https://cotienxanhlaundry.com/premium-caocap" target="_blank" rel="noopener">PREMIUM</a>)</li>
+    <li><a href="https://lgcleanpro.vn/nhuong-quyen/" target="_blank" rel="noopener">Trang nhượng quyền Cleanpro</a>, <a href="https://lgcleanpro.vn/san-pham/mo-hinh-co-ban-2/" target="_blank" rel="noopener">trang «Mô hình cơ bản»</a>, <a href="https://lgcleanpro.vn/chi-20m%C2%B2-van-co-the-mo-cua-hang-giat-say-hien-dai/" target="_blank" rel="noopener">bài viết mở tiệm 20m²</a></li>
+    <li><a href="https://vnreview.vn/threads/samsung-ra-mat-may-giat-say-cong-nghiep-o-viet-nam-nhap-truc-tiep-tu-han-quoc.87836/" target="_blank" rel="noopener">VnReview: Samsung ra mắt máy giặt sấy công nghiệp tại Việt Nam (7/2026)</a></li>
+    <li><a href="https://news.samsung.com/vn/samsung-ra-mat-giai-phap-giat-say-cong-nghiep-dong-hanh-cung-doanh-nghiep-toi-uu-van-hanh-va-phat-trien-ben-vung" target="_blank" rel="noopener">Thông cáo Samsung Việt Nam: ra mắt giải pháp giặt sấy công nghiệp, 3 nhà phân phối (17/7/2026)</a></li>
+    <li><a href="https://news.samsung.com/vn/samsung-dong-hanh-cung-doi-tac-phat-trien-mo-hinh-cua-hang-giat-say-tu-dong-khai-truong-cua-hang-dau-tien-titi-laundry" target="_blank" rel="noopener">Thông cáo Samsung Việt Nam: khai trương TiTi Laundry (21/9/2026)</a></li>
+  </ul>
+</footer>
+</div>
+
+<script>
+const G='<span class="pill guess">Suy đoán</span>';
+const data=[
+ {name:"SESA Coin Laundry",sub:"Chúng ta｜SESA Việt Nam",type:"Trọn gói mở tiệm",seg:"self",aud:["tob"],
+  brand:"AQUA giặt sấy 2 trong 1 bán công nghiệp (17kg, 27kg)",planShort:"Gói khởi nghiệp từ 310 triệu đồng (15m², 3 máy); báo giá nội bộ AQUA nhỏ 250 triệu／All-in-One 500 triệu; website dự kiến hoàn vốn 6 tháng",card:false},
+ {name:"Cleanpro Việt Nam",sub:"Đại lý LG Commercial｜Fanpage: LG Cleanpro VietNam, Cleanpro Express Vietnam",type:"Đại lý thiết bị＋nhượng quyền／vận hành thay",seg:"self",aud:["tob"],
+  brand:"LG Giant C Max, Titan Max",planShort:"Hợp tác chia lợi nhuận／tự vận hành／đầu tư và vận hành thay, chưa thấy phí nhượng quyền; từ khoảng 250 triệu đồng",card:false},
+ {name:"Đô Thị Laundry",sub:"Spinning International (Speed Queen／ALS)",type:"Thương hiệu nhượng quyền",seg:"self",aud:["tob"],
+  brand:"Speed Queen",planShort:"3 gói nhượng quyền: từ 600 triệu／1,59 tỷ／2,99 tỷ đồng; công bố hoàn vốn 22 tháng",card:false},
+ {name:"Koalala",sub:"Asiatech Holding",type:"Thương hiệu nhượng quyền",seg:"self",aud:["tob"],
+  brand:"Spinz (Malaysia)",planShort:"Nhượng quyền trọn gói, khoảng 300 triệu (20–30m²)／500 triệu (30–50m²); công bố biên lợi nhuận 30–38%, hoàn vốn 10–14 tháng",card:false},
+ {name:"Áo Mây",sub:"Chuỗi nhượng quyền giặt sấy đa dịch vụ",type:"Thương hiệu nhượng quyền",seg:"self",aud:["tob","toc"],
+  brand:"Chưa công bố (có LG Styler)",planShort:"Từ 150 triệu／250 triệu／390 triệu đồng; không phí nhượng quyền, không chia doanh thu; công bố hoàn vốn 12–18 tháng",card:false},
+ {name:"Cô Tiên Xanh",sub:"Cô Tiên Xanh Laundry｜từ năm 2016",type:"Thương hiệu nhượng quyền",seg:"self",aud:["tob"],
+  brand:"Electrolux",planShort:"3 gói BASIC／STANDARD／PREMIUM, chưa công bố giá; công bố 30+ cửa hàng",card:false},
+ {name:"CleanChem Vietnam",sub:"Phân phối thiết bị giặt công nghiệp",type:"OPL／máy công nghiệp",seg:"opl",aud:["tob"],
+  brand:"HOOP (Trung Quốc)",planShort:"Không nhượng quyền; bán thiết bị theo dự án, chủ lực bộ giặt sấy 15kg cho homestay, khách sạn nhỏ",card:false},
+ {name:"Hitech Group",sub:"Thanh Trì, Hà Nội｜Tổng kho máy giặt công nghiệp",type:"Bán sỉ OPL／máy công nghiệp",seg:"opl",aud:["tob"],
+  brand:"Không ghi thương hiệu, nghi hàng Trung Quốc "+G,planShort:"Không nhượng quyền; hơn 100 triệu đồng mua 4 máy",card:false},
+ {name:"LG WashTower",sub:"LG Vietnam chính hãng",type:"Tháp giặt sấy gia đình",seg:"home",aud:["toc"],
+  brand:"LG WashTower WT1410NHE (giặt 14kg／sấy 10kg)",planShort:"Không (khuyến mãi bán lẻ gia dụng)",card:true,
+  feats:["Độc quyền LG.com tháng 11: từ hơn 63 triệu giảm còn hơn 30 triệu đồng","Chỉ lộ một nửa giá, buộc khách nhắn tin hỏi giá","Hình ảnh đời sống tông be vân gỗ"]},
+ {name:"TiTi Laundry",sub:"Quận 7, TP.HCM｜Tự phục vụ 24/7",type:"Tiệm giặt sấy tự phục vụ",seg:"self",aud:["toc"],
+  brand:"Máy giặt sấy thương mại Samsung (giặt 18kg／sấy 14kg, thông cáo Samsung xác nhận)",planShort:"Không; cửa hàng mẫu của Samsung và WW Việt Nam. Khảo sát: khách tự mở, tự thi công, máy và thi công khoảng 300 triệu",card:true,
+  feats:["Giặt 18kg 55.000 đồng／38 phút; sấy 14kg 49.000 đồng／45 phút","Tặng nước giặt Omo＋nước xả Downy","Linh vật＋chương trình theo dịp (11/11, ngày mưa)","Trang dẫn link samsung.com và báo công nghệ",
+   "<b>Khảo sát</b>: không phải nhượng quyền, khách tự mở, tự thi công; muốn mở có thể giới thiệu nhà phân phối",
+   "<b>Khảo sát</b>: báo giá máy giặt sấy 65 triệu/bộ; hệ thống thanh toán điện tử 80 triệu/bộ, không nhận thẻ tín dụng quốc tế",
+   "<b>Khảo sát</b>: nằm trong khu dân cư thông thường (75 Đường 79, phường Tân Hưng), lúc khảo sát không có khách"]},
+ {name:"OMP Omywash",sub:"OMP Alliance｜Điểm đầu tiên: Central Mall Satra Võ Văn Kiệt",type:"Trạm giặt sấy tự phục vụ dạng container",seg:"self",aud:["toc"],
+  brand:"Báo cáo khảo sát không ghi rõ; xếp vào nhóm Samsung, báo giá 65 triệu/bộ "+G,planShort:"Chưa thấy gói nhượng quyền; khảo sát: gồm container, máy lạnh, bảng hiệu, thanh toán điện tử khoảng 500 triệu trọn gói",card:true,
+  feats:["Container di động khoảng 15m², tích hợp máy giặt sấy, điện nước, PCCC, thanh toán QR, hoạt động 24/7 không người trực",
+   "Giặt 30.000 đồng／45 phút; sấy 30.000 đồng／50 phút",
+   "Hệ thống hội viên riêng (62 hội viên lúc khảo sát), không nhận thẻ tín dụng quốc tế",
+   "Điểm đầu tiên dưới trung tâm thương mại và chung cư, cạnh trụ sạc; khách hàng mục tiêu là sinh viên, công nhân, người thuê trọ, khách du lịch; phù hợp ký túc xá, khu công nghiệp, đất trống",
+   "Thư viện quảng cáo không có quảng cáo đang chạy (18/11/2026)"]},
+ {name:"Trạm Giặt",sub:"Tân Bình, TP.HCM｜khai trương 26/9",type:"Tiệm giặt sấy tự phục vụ",seg:"self",aud:["toc"],
+  brand:"LG Giant C Max "+G+" (bảng giá ghi giặt 13kg／sấy 10kg)",planShort:"Không; có thể là khách hàng của Cleanpro",card:true,
+  feats:["4 ngày khai trương hoàn 100% phí giặt sấy","Tích điểm hội viên, nạp tiền được thưởng (10/10 tặng 21%)","Nội dung riêng cho sinh viên, đồ lớn như chăn mền"]},
+ {name:"Mon Na Care",sub:"Tân Phú, TP.HCM",type:"Tiệm giặt có nhân viên phục vụ",seg:"self",aud:["toc"],
+  brand:"Máy chồng màu xám, nghi là LG Giant C "+G,planShort:"Không",card:true,
+  feats:["Giặt, sấy, gấp sẵn, tính theo món hoặc theo kg","Nhận chăn, ga, gối, nhiều khăn và đồ vải","Video ngắn hiệu ứng AI, tương tác rất thấp"]},
+ {name:"Mama Wash",sub:"TP.HCM｜mở chi nhánh thứ 2 ngày 7/11",type:"Chuỗi chăm sóc đồ đa dịch vụ",seg:"self",aud:["toc"],
+  brand:"Ảnh chụp không thấy rõ",planShort:"Không",card:true,
+  feats:["Giặt sấy＋giặt giày＋giặt khô／giặt hấp＋giặt ủi","Khai trương có múa lân, người hóa trang Thần Tài, giảm 49% cho khách mới","Dùng Zalo làm kênh chăm sóc khách hàng"]}
+];
+const segTxt={self:"Tự phục vụ／tiệm giặt",opl:"OPL／công nghiệp",home:"Gia dụng"};
+const audPill=a=>a.map(x=>`<span class="pill ${x}">${x==="tob"?"to B":"to C"}</span>`).join(" ");
+const st={aud:"all",seg:"all"};
+function render(){
+  const list=data.filter(d=>(st.aud==="all"||d.aud.includes(st.aud))&&(st.seg==="all"||d.seg===st.seg));
+  document.getElementById("tbody").innerHTML=list.length?list.map(d=>`<tr>
+    <td class="name"><b>${d.name}</b><small>${d.sub}</small></td>
+    <td>${d.type}<br><span class="pill seg">${segTxt[d.seg]}</span></td>
+    <td>${d.brand}</td><td>${d.planShort}</td><td>${audPill(d.aud)}</td></tr>`).join(""):`<tr><td colspan="5" class="empty">Không có mục nào phù hợp với bộ lọc.</td></tr>`;
+}
+document.getElementById("cards").innerHTML=data.filter(d=>d.card).map(d=>`<article class="card">
+  <div class="card-head"><div class="tags">${audPill(d.aud)}<span class="pill seg">${segTxt[d.seg]}</span></div>
+    <h3>${d.name}</h3><span class="sub">${d.sub}</span></div>
+  <dl><dt>Loại hình</dt><dd>${d.type}</dd>
+    <dt>Thương hiệu máy</dt><dd>${d.brand}</dd>
+    <dt>Đặc điểm</dt><dd><ul>${d.feats.map(f=>`<li>${f}</li>`).join("")}</ul></dd></dl></article>`).join("");
+document.querySelectorAll(".filters button").forEach(b=>b.addEventListener("click",()=>{
+  st[b.dataset.k]=b.dataset.v;
+  document.querySelectorAll(`.filters button[data-k="${b.dataset.k}"]`).forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));
+  render();
+}));
+render();
+</script>
+
+</html>
